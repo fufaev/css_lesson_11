@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Практическая работа №11 — Коммерческая витрина и Портфолио</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<!-- 
+  ПОДСКАЗКА ПО ТЕМАМ (Design System из Figma):
+  Для светлой палитры («ДВИЖ») используйте класс: class="theme-dvizh"
+  Для тёмной палитры («GYMBY») используйте класс: class="theme-gymby"
+-->
+<body class="theme-dvizh">
+
+  <!-- =====================================================================
+       ШАПКА САЙТА (Уровень BASE: Flexbox + margin-left: auto)
+       ===================================================================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="#" class="logo">STUDIO<span>.DEV</span></a>
+
+      <nav class="main-nav" aria-label="Основная навигация">
+        <ul class="main-nav__list">
+          <li><a href="#benefits" class="main-nav__link">Преимущества</a></li>
+          <li><a href="#showcase" class="main-nav__link">Команда и кейсы</a></li>
+          <li><a href="#pricing" class="main-nav__link">Тарифы</a></li>
+          <li><a href="#contacts" class="main-nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <!-- Кнопка должна быть оттолкнута вправо через margin-left: auto (без лишних обёрток) -->
+      <a href="#contacts" class="btn btn--primary site-header__cta">Записаться</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- =====================================================================
+         HERO-БАННЕР С НАЛОЖЕНИЕМ НА CSS GRID (Уровень JUNIOR)
+         ВНИМАНИЕ: Использование position: absolute для карточки запрещено!
+         Фон, затемнение и контент должны занимать одну область grid-area: 1 / 1.
+         ===================================================================== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <!-- Слой 1: Фоновое изображение или градиентный плейсхолдер -->
+      <div class="hero__media" role="img" aria-label="Атмосфера студии и пространства"></div>
+
+      <!-- Слой 2: Контент поверх фона (заголовок слева + плавающая карточка справа снизу) -->
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <span class="badge">Дизайн-система &amp; CSS Grid</span>
+          <!-- Адаптивный размер шрифта через clamp() (Уровень PRO) -->
+          <h1 id="hero-title" class="hero__title">
+            СОЗДАЁМ ЦИФРОВЫЕ ПРОДУКТЫ И ПРОСТРАНСТВА НОВОГО УРОВНЯ
+          </h1>
+          <p class="hero__subtitle">
+            Коммерческая архитектура интерфейсов без лишних фреймворков и костылей.
+          </p>
+          <a href="#showcase" class="btn btn--primary">Смотреть направления</a>
+        </div>
+
+        <!-- Плавающая карточка-информер (как в макете «ДВИЖ») -->
+        <aside class="hero__floating-card" aria-label="Ключевая статистика">
+          <strong class="hero__floating-number">6+</strong>
+          <p class="hero__floating-text">
+            актуальных направлений разработки и дизайна под ключ
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         BENTO-СЕТКА ПРЕИМУЩЕСТВ (Уровень JUNIOR)
+         Несимметричная журнальная сетка: карточки с .bento-card--wide (span 2)
+         и .bento-card--tall (grid-row: span 2) на десктопе (>= 1024px).
+         ===================================================================== -->
+    <section class="section" id="benefits" aria-labelledby="benefits-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="benefits-title" class="section-title">Почему выбирают нас</h2>
+          <p class="section-desc">Bento-архитектура: модульность, скорость и адаптивность</p>
+        </header>
+
+        <div class="bento-grid">
+          <article class="bento-card bento-card--wide">
+            <span class="bento-card__tag">01 / Архитектура</span>
+            <h3 class="bento-card__title">Grid снаружи — Flexbox внутри</h3>
+            <p class="bento-card__text">
+              Глобальный каркас строится на двумерной сетке, а выравнивание внутри компонентов — на гибких флексах.
+            </p>
+          </article>
+
+          <article class="bento-card bento-card--tall">
+            <span class="bento-card__tag">02 / Адаптивность</span>
+            <h3 class="bento-card__title">От 320px до 4K</h3>
+            <p class="bento-card__text">
+              Автоматическая перестройка колонок через <code>auto-fit</code> и <code>minmax()</code> без десятков медиазапросов и горизонтального скролла.
+            </p>
+          </article>
+
+          <article class="bento-card">
+            <span class="bento-card__tag">03 / Скорость</span>
+            <h3 class="bento-card__title">Zero-JS интерактив</h3>
+            <p class="bento-card__text">
+              Нативные состояния через <code>:has()</code> и <code>&lt;details&gt;</code> работают мгновенно.
+            </p>
+          </article>
+
+          <article class="bento-card">
+            <span class="bento-card__tag">04 / Токены</span>
+            <h3 class="bento-card__title">Единый стиль Figma</h3>
+            <p class="bento-card__text">
+              Переключение между светлой и тёмной темой сменой одного класса на <code>&lt;body&gt;</code>.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         ВИТРИНА КОМАНДЫ / КЕЙСОВ (Уровень BASE)
+         Сетка: repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr))
+         Внутри каждой карточки — Flexbox с прижатием кнопки книзу.
+         ===================================================================== -->
+    <section class="section section--alt" id="showcase" aria-labelledby="showcase-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="showcase-title" class="section-title">Команда и проекты</h2>
+          <p class="section-desc">Готовые модульные карточки для вашего будущего Сайта-Портфолио</p>
+        </header>
+
+        <div class="showcase-grid">
+          <article class="profile-card">
+            <!-- Изображение/заглушка с фиксированной пропорцией aspect-ratio: 3 / 4 -->
+            <div class="profile-card__media" role="img" aria-label="Фото специалиста 1">
+              <span>3 : 4</span>
+            </div>
+            <div class="profile-card__body">
+              <h3 class="profile-card__title">Алексей Громов</h3>
+              <p class="profile-card__role">Lead Frontend Architect</p>
+              <p class="profile-card__text">
+                Проектирует дизайн-системы и сложные адаптивные интерфейсы.
+              </p>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">Смотреть кейс</a>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-card__media" role="img" aria-label="Фото специалиста 2">
+              <span>3 : 4</span>
+            </div>
+            <div class="profile-card__body">
+              <h3 class="profile-card__title">Марина Соколова</h3>
+              <p class="profile-card__role">UI/UX Product Designer</p>
+              <p class="profile-card__text">
+                Создаёт визуальные концепции в Figma с продуманной типографикой, контрастом и сетками для мобильных и десктопных версий продуктов.
+              </p>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">Смотреть кейс</a>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-card__media" role="img" aria-label="Фото специалиста 3">
+              <span>3 : 4</span>
+            </div>
+            <div class="profile-card__body">
+              <h3 class="profile-card__title">Дмитрий Ковалёв</h3>
+              <p class="profile-card__role">Accessibility &amp; Performance Engineer</p>
+              <!-- Стресс-тест неделимым словом длиной 46+ символов на 320px (Уровень PRO) -->
+              <p class="profile-card__text profile-card__stress">
+                Модуль_проверки: Критическая_ошибка_переполнения_GridTrackMinmax320pxTest
+              </p>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">Смотреть кейс</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         ТАРИФЫ И FAQ БЕЗ JAVASCRIPT (Уровень PRO)
+         1. Выделение выбранной карточки через :has(input[type="radio"]:checked)
+         2. Выравнивание строк внутри карточек через grid-template-rows: subgrid
+         3. Аккордеон вопросов через нативные теги <details> и <summary>
+         ===================================================================== -->
+    <section class="section" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="pricing-title" class="section-title">Форматы сотрудничества</h2>
+          <p class="section-desc">Интерактивный выбор тарифа на чистом CSS без JavaScript</p>
+        </header>
+
+        <div class="pricing-grid">
+          <label class="plan-card">
+            <input type="radio" name="plan" value="start" class="plan-card__radio">
+            <h3 class="plan-card__name">Старт</h3>
+            <p class="plan-card__price">450 BYN</p>
+            <ul class="plan-card__features">
+              <li>Лендинг до 5 секций</li>
+              <li>Адаптив 320px — 1440px</li>
+            </ul>
+            <span class="btn btn--outline plan-card__action">Выбрать тариф</span>
+          </label>
+
+                    <label class="plan-card">
+            <input type="radio" name="plan" value="pro" class="plan-card__radio" checked>
+            <h3 class="plan-card__name">Оптимальный</h3>
+            <p class="plan-card__price">890 BYN</p>
+            <ul class="plan-card__features">
+              <li>Многостраничный сайт или витрина</li>
+              <li>Дизайн-система на CSS-токенах</li>
+              <li>Базовая SEO и a11y-оптимизация</li>
+              <li>Сборка под портфолио на GitHub</li>
+            </ul>
+            <span class="btn btn--primary plan-card__action">Выбрать тариф</span>
+          </label>
+
+          <label class="plan-card">
+            <input type="radio" name="plan" value="studio" class="plan-card__radio">
+            <h3 class="plan-card__name">Премиум</h3>
+            <p class="plan-card__price">1 450 BYN</p>
+            <ul class="plan-card__features">
+              <li>Индивидуальный UI-кит в Figma</li>
+              <li>Сложные Bento-сетки и subgrid</li>
+              <li>Поддержка после запуска 30 дней</li>
+            </ul>
+            <span class="btn btn--outline plan-card__action">Выбрать тариф</span>
+          </label>
+        </div>
+
+        <!-- Нативный аккордеон вопросов без JS (Уровень PRO: <details> + <summary>) -->
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary class="faq-item__question">Можно ли использовать эти секции в итоговом Сайте-Портфолио?</summary>
+            <p class="faq-item__answer">
+              Да! Каждый блок (Hero, Bento-сетка, витрина кейсов и контакты) спроектирован как независимый модуль, который легко перенести в ваш финальный проект.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Почему в работе запрещён JavaScript?</summary>
+            <p class="faq-item__answer">
+              Современный CSS (Grid, Flexbox, :has(), clamp()) и HTML5 (&lt;details&gt;, &lt;dialog&gt;) закрывают большинство задач раскладки и базового интерактива нативно и без лишней нагрузки на браузер.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         АСИММЕТРИЧНЫЙ СПЛИТ-БЛОК КОНТАКТОВ (Уровень BASE)
+         Две колонки: слева ширина var(--split-sidebar-width), справа 1fr.
+         На экранах < 768px перестраивается в 1 колонку.
+         ===================================================================== -->
+    <section class="section section--alt" id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="contacts-split">
+          <div class="contacts-split__info">
+            <h2 id="contacts-title" class="section-title">Где нас найти</h2>
+            <p class="contacts-split__address">
+              г. Минск, пр-т Дзержинского, 104<br>
+              <strong>ст. м. Петровщина</strong> (3 минуты пешком)
+            </p>
+            <dl class="contacts-meta">
+              <div class="contacts-meta__row">
+                <dt>Режим работы:</dt>
+                <dd>Пн–Сб, 09:00 – 21:00</dd>
+              </div>
+              <div class="contacts-meta__row">
+                <dt>Телефон:</dt>
+                <dd><a href="tel:+375290000000">+375 (29) 000-00-00</a></dd>
+              </div>
+            </dl>
+            <div class="contacts-split__links">
+              <a href="#" class="btn btn--primary">Написать в Telegram</a>
+            </div>
+          </div>
+
+          <div class="contacts-split__map" role="img" aria-label="Схема проезда к станции метро Петровщина">
+            <span>Интерактивная карта / Фрейм (16 : 9)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>&copy; 2026 Курс «Интернет-технологии», БГУ — Практическая работа №11</p>
+      <a href="#hero-title" class="site-footer__top">Наверх &uarr;</a>
+    </div>
+  </footer>
+
+</body>
+</html>
