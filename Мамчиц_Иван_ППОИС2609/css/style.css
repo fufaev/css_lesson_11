@@ -11,9 +11,20 @@
 
   /* Базовые отступы и сетка */
   --container-max: 1200px;
-  --container-pad: 1.25rem;
+  --container-pad-inline-ph: 16px;
+  --container-pad-block-ph: 24px;
+  --container-pad-block-logo-ph: 13px;
   --gap-sm: 24px;
-  --gap-md: 1.25rem;
+  --gap-ph: 16px;
+  --gap-cards-ph: 20px;
+  --bento-pad-block-ph: 24px;
+  --bento-pad-inline-ph: 32px;
+  --cards-pad-ph: 32px;
+  --bento-gap-ph: 12px;
+  --tutor-gap-pad-ph: 24px;
+  --contacts-gap-ph: 24px;
+  --tutors-gap: 23px;
+  --footer-gap: 24px;
   --gap-lg: 2rem;
 
   /* Скругления из UI-кита Figma */
@@ -82,15 +93,15 @@
 /* ТЁМНАЯ ТЕМА: Фитнес-клуб «GYMBY» (графитовый фон, неоново-лаймовый/оранжевый акцент) */
 .theme-gymby {
   --color-background: #0B0C10;
-  --color-bg: #0b0d12;
+  --color-bg: #0B0C10;
   --color-bg-alt: #141821;
-  --color-surface: #1b202c;
-  --color-text: #f8fafc;
-  --color-text-muted: #94a3b8;
-  --color-primary: #a3e635;
-  --color-primary-hover: #84cc16;
-  --color-primary-contrast: #0b0d12;
-  --color-border: #2d3548;
+  --color-surface: #1F2833;
+  --color-text: #FFF;
+  --color-text-muted: #FFF;
+  --color-primary: #00F5D4;
+  --color-primary-hover: #185ABD;
+  --color-primary-contrast: #0B0C10;
+  --color-border: #FFF;
   --hero-overlay: linear-gradient(110deg, rgba(11, 13, 18, 0.92) 0%, rgba(11, 13, 18, 0.65) 100%);
   --shadow-card: 0 12px 30px -5px rgba(0, 0, 0, 0.45);
 }
@@ -114,11 +125,10 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.6;
   overflow-x: hidden;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
     body {
         padding-inline: 120px;
     }
@@ -146,20 +156,8 @@ input:focus-visible + * {
   width: 100%;
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: var(--container-pad);
-}
-
-.section {
-  padding-block: 4.5rem;
-}
-
-.section--alt {
-  /*background-color: var(--color-bg-alt);*/
-}
-
-.section-header {
-  margin-bottom: 2.5rem;
-  /*max-width: 640px;*/
+  padding-inline: var(--container-pad-inline-ph);
+  padding-block: var(--container-pad-block-ph);
 }
 
 .section-title {
@@ -169,7 +167,7 @@ input:focus-visible + * {
   font-weight: var(--heading-h2-weight);
   font-size: var(--heading-h2-size);
   line-height: var(--heading-h2-height);
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--gap-ph);
 }
 
 .section-desc {
@@ -178,10 +176,10 @@ input:focus-visible + * {
 
 /* Кнопки и бейджи */
 .btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1.5rem;
+  padding: var(--container-pad-block-ph) var(--container-pad-inline-ph);
   border-radius: var(--radius-sm);
   border: 2px solid transparent;
   cursor: pointer;
@@ -200,6 +198,7 @@ input:focus-visible + * {
 
 .btn--primary:hover {
   background-color: var(--color-primary-hover);
+  color: var(--color-text);
 }
 
 .btn--outline {
@@ -212,7 +211,7 @@ input:focus-visible + * {
   border-color: var(--color-primary);
 }
 
-.badge {
+/*.badge {
   display: inline-block;
   padding: 0.3rem 0.85rem;
   font-size: 0.8rem;
@@ -222,7 +221,7 @@ input:focus-visible + * {
   border-radius: var(--radius-pill);
   background-color: var(--color-primary);
   color: var(--color-primary-contrast);
-}
+}*/
 
 /* =========================================================================
    3. ШАПКА САЙТА (Уровень BASE: Flexbox + margin-left: auto)
@@ -232,15 +231,18 @@ input:focus-visible + * {
   top: 0;
   z-index: 50;
   background-color: var(--color-background);
-  border-bottom: 1px solid var(--color-border);
+}
+
+.container.site-header__inner {
+  padding: var(--container-pad-inline-ph);
 }
 
 .site-header__inner {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--gap-md);
-  padding-block: 1rem;
+  /*gap: var(--gap-md);*/ 
+  /*padding: 30px 0;*/
 }
 
 .logo {
@@ -253,6 +255,7 @@ input:focus-visible + * {
   font-family: var(--caption-font-family);
   line-height: var(--caption-line-height);
   gap: 13px;
+  padding-block: var(--container-pad-block-logo-ph);
 }
 
 .logo span {
@@ -262,7 +265,7 @@ input:focus-visible + * {
 .main-nav__list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--gap-md);
+  gap: var(--gap-ph);
 }
 
 .main-nav__link {
@@ -307,15 +310,15 @@ input:focus-visible + * {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: var(--gap-lg);
-  padding-block: 3.5rem;
+  gap: var(--gap-ph);
+  /*padding: 60px 30px 30px 30px;*/
 }
 
 .hero__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--gap-md);
+  /*gap: var(--gap-md);*/
   max-width: 650px;
 }
 
@@ -335,14 +338,14 @@ input:focus-visible + * {
 }
 
 /* Плавающая акцентная карточка (как в макете «ДВИЖ») */
-.hero__floating-card {
+/*.hero__floating-card {
   background-color: var(--color-primary);
   color: var(--color-primary-contrast);
   padding: 1.5rem;
   border-radius: var(--radius-md);
   max-width: 280px;
   box-shadow: var(--shadow-card);
-}
+}*/
 
 .hero__floating-number {
   display: block;
@@ -365,8 +368,8 @@ input:focus-visible + * {
     line-height: var(--heading-h3-height);
     display: flex;
     flex-direction: column;
-    gap: var(--gap-md);
-    align-items: flex-start;
+    gap: var(--gap-ph);
+    /*align-items: flex-start;*/
 }
 
 @media (min-width: 900px) {
@@ -399,18 +402,19 @@ input:focus-visible + * {
 .bento-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: var(--gap-md);
+  gap: var(--gap-ph);
 }
 
 .bento-card {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--gap-sm);
+  gap: var(--bento-gap-ph);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 1.75rem;
+  padding-block: var(--bento-pad-block-ph);
+  padding-inline: var(--bento-pad-inline-ph);
   box-shadow: var(--shadow-card);
 }
 
@@ -455,7 +459,7 @@ input:focus-visible + * {
 
   .bento-card--tall {
     grid-row: span 2;
-    background-color: var(--color-bg-alt);
+    /*background-color: var(--color-bg-alt);*/
   }
 }
 
@@ -465,7 +469,7 @@ input:focus-visible + * {
 .showcase-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr));
-  gap: var(--gap-lg);
+  gap: var(--tutors-gap);
 }
 
 .profile-card {
@@ -477,8 +481,9 @@ input:focus-visible + * {
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-card);
-  padding: 12px 24px;
-  gap: var(--gap-sm);
+  /*padding: 12px 24px;*/
+  gap: var(--tutor-gap-pad-ph);
+  padding: var(--tutor-gap-pad-ph);
 }
 
 .profile-card__media {
@@ -496,7 +501,7 @@ input:focus-visible + * {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  gap: var(--gap-sm);
+  gap: var(--tutor-gap-pad-ph);
 }
 
 .profile-card__title {
@@ -544,18 +549,18 @@ input:focus-visible + * {
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  gap: var(--gap-md);
-  margin-bottom: 3rem;
+  /*gap: var(--gap-md);*/
+  margin-bottom: var(--gap-ph);
 }
 
 .plan-card {
   min-width: 0;
   display: grid;
-  gap: var(--gap-sm);
+  gap: var(--gap-cards-ph);
   background-color: var(--color-surface);
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: 1.75rem;
+  padding: var(--cards-pad-ph);
 cursor: pointer;
 transition: border-color 0.2s ease, transform 0.2s ease;
 }
@@ -595,7 +600,7 @@ color: var(--color-primary);
 .plan-card__features {
 display: flex;
 flex-direction: column;
-gap: 0.5rem;
+gap: var(--gap-ph);
 color: var(--color-text-muted);
   font-family: var(--body-label-family);
   font-style: var(--body-label-style);
@@ -622,7 +627,7 @@ max-width: 800px;
 background-color: var(--color-surface);
 border: 1px solid var(--color-border);
 border-radius: var(--radius-sm);
-padding: 1rem 1.25rem;
+/*padding: 1rem 1.25rem;*/
 }
 .faq-item__question {
 font-weight: 700;
@@ -633,7 +638,7 @@ list-style: none;
 display: none;
 }
 .faq-item__answer {
-margin-top: 0.75rem;
+margin-top: var(--gap-ph);
 color: var(--color-text-muted);
 }
 
@@ -644,7 +649,7 @@ color: var(--color-text-muted);
 display: grid;
 grid-template-columns: minmax(0, 1fr);
 align-items: center;
-gap: var(--gap-sm);
+gap: var(--contacts-gap-ph);
 }
 @media (min-width: 1200px) {
 .contacts-split {
@@ -669,7 +674,7 @@ flex-direction: column;
   font-weight: var(--body-regular-weight);
   font-size: var(--body-regular-size);
   line-height: var(--body-regular-height);
-gap: var(--gap-md);
+  gap: var(--contacts-gap-ph);
 }
 
 .ask-directions {
@@ -726,11 +731,12 @@ color: var(--color-text-muted);
   font-style: var(--caption-style);
   font-family: var(--caption-font-family);
   line-height: 140%;
+  opacity: 40%;
 }
 
 .site-footer {
 border-top: 1px solid var(--color-border);
-padding-block: 2rem;
+/*padding-block: 2rem;*/
 color: var(--color-text-muted);
 font-size: 0.9rem;
 }
@@ -738,7 +744,8 @@ font-size: 0.9rem;
 display: flex;
 flex-wrap: wrap;
 justify-content: space-between;
-gap: var(--gap-md);
+gap: var(--footer-gap);
+/*gap: var(--gap-md);*/
 }
 .site-footer__top {
 font-weight: 600;
@@ -762,11 +769,12 @@ repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr)),
 чем его необходимо было по содержимому карточки, но чтобы она вся помещалась и не было горизонтальной прокрутки.
 2. [BASE] Зачем внутри карточки .profile-card мы оставили display: flex; flex-direction: column;,
 хотя сама сетка карточек построена на CSS Grid?
-Ответ: чтобы содержимое карточки могло растягиваться в зависимости от ее контента и прижать кнопку "Смотреть кейс книзу"
+Ответ: чтобы содержимое карточки могло растягиваться в зависимости от ее контента и иметь возможность 
+прижать кнопку "Смотреть кейс книзу".
 3. [JUNIOR] Как в секции .hero удалось наложить плавающую карточку (.hero__floating-card)
 поверх фонового слоя (.hero__media) без использования position: absolute?
-Ответ:
+Ответ: через свойство grid-area: 1 / 1; для обоих.
 4. [PRO] Какую задачу решает свойство grid-template-rows: subgrid внутри карточек
 тарифов (.plan-card) по сравнению с обычной раскладкой?
-Ответ:
+Ответ: позволяет выравнивать по "линейке" отдельные блоки. 
 */
