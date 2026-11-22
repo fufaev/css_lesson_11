@@ -26,6 +26,13 @@
   --tutors-gap: 23px;
   --footer-gap: 24px;
   --gap-lg: 2rem;
+  --footer-logo-gap: 4px;
+
+  --header-padding-block-des: 30px;
+  --header-gap-des: 32px;
+  --cards-gap-des: 25px;
+  --contacts-pad-des: 30px;
+  --contacts-gap-des: 30px;
 
   /* Скругления из UI-кита Figma */
   --radius-sm: 8px;
@@ -170,6 +177,16 @@ input:focus-visible + * {
   margin-bottom: var(--gap-ph);
 }
 
+@media(min-width: 1200px) {
+  .section-title {
+    margin-bottom: 30px;
+  }
+  .container {
+    padding-inline: 0;
+    padding-block: 30px;
+  }
+}
+
 .section-desc {
   color: var(--color-text-muted);
 }
@@ -241,8 +258,16 @@ input:focus-visible + * {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  /*gap: var(--gap-md);*/ 
-  /*padding: 30px 0;*/
+  gap: var(--header-gap-des);
+}
+
+@media (min-width: 1200px) {
+  .container.site-header__inner{
+    padding-block: var(--header-padding-block-des);
+    padding-inline: 0;
+    justify-content: space-between;
+  }
+  
 }
 
 .logo {
@@ -311,7 +336,12 @@ input:focus-visible + * {
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: var(--gap-ph);
-  /*padding: 60px 30px 30px 30px;*/
+}
+
+@media(min-width: 1200px) {
+  .hero__grid {
+    padding: 60px 30px 30px;
+  }
 }
 
 .hero__content {
@@ -338,14 +368,14 @@ input:focus-visible + * {
 }
 
 /* Плавающая акцентная карточка (как в макете «ДВИЖ») */
-/*.hero__floating-card {
+.hero__floating-card {
   background-color: var(--color-primary);
   color: var(--color-primary-contrast);
   padding: 1.5rem;
   border-radius: var(--radius-md);
   max-width: 280px;
   box-shadow: var(--shadow-card);
-}*/
+}
 
 .hero__floating-number {
   display: block;
@@ -376,7 +406,7 @@ input:focus-visible + * {
   .hero__grid {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-areas: ". title" 
-                         "sign-up-section .";
+                         "sign-up-section hero__floating-card";
   }
 
   .hero__title {
@@ -393,6 +423,7 @@ input:focus-visible + * {
   .hero__floating-card {
     justify-self: end;
     align-self: end;
+    grid-area: hero__floating-card;
   }
 }
 
@@ -411,7 +442,6 @@ input:focus-visible + * {
   flex-direction: column;
   gap: var(--bento-gap-ph);
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding-block: var(--bento-pad-block-ph);
   padding-inline: var(--bento-pad-inline-ph);
@@ -477,7 +507,6 @@ input:focus-visible + * {
   display: flex;
   flex-direction: column;
   background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   overflow: hidden;
   box-shadow: var(--shadow-card);
@@ -552,13 +581,18 @@ input:focus-visible + * {
   /*gap: var(--gap-md);*/
   margin-bottom: var(--gap-ph);
 }
+@media(min-width: 500px) {
+  .pricing-grid {
+    gap: var(--cards-gap-des);
+  }
+}
 
 .plan-card {
   min-width: 0;
   display: grid;
   gap: var(--gap-cards-ph);
   background-color: var(--color-surface);
-  border: 2px solid var(--color-border);
+  border: 2px solid var(--color-surface);
   border-radius: var(--radius-md);
   padding: var(--cards-pad-ph);
 cursor: pointer;
@@ -621,11 +655,10 @@ width: 100%;
 .faq-list {
 display: grid;
 gap: var(--gap-sm);
-max-width: 800px;
+max-width: 350px;
 }
 .faq-item {
 background-color: var(--color-surface);
-border: 1px solid var(--color-border);
 border-radius: var(--radius-sm);
 /*padding: 1rem 1.25rem;*/
 }
@@ -651,9 +684,14 @@ grid-template-columns: minmax(0, 1fr);
 align-items: center;
 gap: var(--contacts-gap-ph);
 }
+
 @media (min-width: 1200px) {
 .contacts-split {
 grid-template-columns: var(--split-sidebar-width) minmax(0, 1fr);
+padding: var(--contacts-pad-des);
+}
+.contacts-split .contacts-split__info {
+  gap: var(--contacts-gap-des);
 }
 }
 
@@ -752,15 +790,27 @@ font-weight: 600;
 color: var(--color-primary);
 }
 .footer-info {
-  opacity: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-logo-gap);
+  opacity: 40%;
 }
 .footer-nav {
-  opacity: 80%;
+  opacity: 40%;
 }
+@media(min-width: 500px) {
+  .site-footer__inner {
+    padding: 5px 0 0;
+  }
+  .logo {
+    padding: 0;
+  }
+}
+
 /* =========================================================================
 9. БЛОК ДОКУМЕНТАЦИИ И РЕФЛЕКСИИ (ОБЯЗАТЕЛЬНО К ЗАПОЛНЕНИЮ)
-========================================================================= /
-/ Своими словами
+========================================================================= */
+/* Своими словами
 1. [BASE] Почему для сетки витрины (.showcase-grid) мы применили формулу
 repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr)),
 а не жёсткие 3 колонки repeat(3, 1fr)? Какую роль здесь играет функция min()?
@@ -773,8 +823,10 @@ repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr)),
 прижать кнопку "Смотреть кейс книзу".
 3. [JUNIOR] Как в секции .hero удалось наложить плавающую карточку (.hero__floating-card)
 поверх фонового слоя (.hero__media) без использования position: absolute?
-Ответ: через свойство grid-area: 1 / 1; для обоих.
+Ответ: через свойство grid-area: 1 / 1; для обоих, которое позволяет одну и ту же область делить между несколькими 
+компонентами, из-за того, что по HTML-коду плавающая карточка идет позже, она располагается "выше".
 4. [PRO] Какую задачу решает свойство grid-template-rows: subgrid внутри карточек
 тарифов (.plan-card) по сравнению с обычной раскладкой?
-Ответ: позволяет выравнивать по "линейке" отдельные блоки. 
+Ответ: позволяет выравнивать по "линейке" отдельные блоки через наследование от общих строк родительского контейнера 
+внутренней сетки карточек. 
 */
