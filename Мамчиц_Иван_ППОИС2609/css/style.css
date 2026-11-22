@@ -154,7 +154,7 @@ input:focus-visible + * {
 }
 
 .section--alt {
-  background-color: var(--color-bg-alt);
+  /*background-color: var(--color-bg-alt);*/
 }
 
 .section-header {
@@ -163,6 +163,7 @@ input:focus-visible + * {
 }
 
 .section-title {
+  overflow-wrap: anywhere;
   font-family: var(--heading-h2-font-family);
   font-style: var(--heading-h2-style);
   font-weight: var(--heading-h2-weight);
@@ -498,15 +499,30 @@ input:focus-visible + * {
   gap: var(--gap-sm);
 }
 
+.profile-card__title {
+  font-family: var(--heading-h3-font-family);
+  font-style: var(--heading-h3-style);
+  font-weight: var(--heading-h3-weight);
+  font-size: var(--heading-h3-size);
+  line-height: var(--heading-h3-height);
+}
+
 .profile-card__role {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
   color: var(--color-primary);
 }
 
 .profile-card__text {
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
   color: var(--color-text-muted);
-  font-size: 0.95rem;
 }
 
 /* Защита от переполнения длинным техническим словом на 320px */
@@ -620,25 +636,58 @@ display: none;
 margin-top: 0.75rem;
 color: var(--color-text-muted);
 }
+
 /* =========================================================================
 8. СПЛИТ-БЛОК КОНТАКТОВ И ПОДВАЛ (Уровень BASE)
 ========================================================================= */
 .contacts-split {
 display: grid;
 grid-template-columns: minmax(0, 1fr);
-gap: var(--gap-lg);
 align-items: center;
+gap: var(--gap-sm);
 }
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
 .contacts-split {
 grid-template-columns: var(--split-sidebar-width) minmax(0, 1fr);
 }
 }
+
+@media (max-width: 1200px) {
+  .contacts-split__info {
+    order: 2;
+  }
+  .contacts-split__map {
+    order: 1;
+  }
+}
+
 .contacts-split__info {
 display: flex;
 flex-direction: column;
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
 gap: var(--gap-md);
 }
+
+.ask-directions {
+  font-family: var(--heading-h3-font-family);
+  font-style: var(--heading-h3-style);
+  font-weight: var(--heading-h3-weight);
+  font-size: var(--heading-h3-size);
+  line-height: var(--heading-h3-height);
+}
+
+.answer {
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
+}
+
 .contacts-meta {
 display: flex;
 flex-direction: column;
@@ -658,14 +707,27 @@ font-weight: 600;
 .contacts-split__map {
 aspect-ratio: 16 / 9;
 width: 100%;
-background-color: var(--color-surface);
-border: 2px dashed var(--color-border);
+/*background-color: var(--color-surface);
+border: 2px dashed var(--color-border);*/
 border-radius: var(--radius-md);
 display: grid;
-place-items: center;
+place-items: end;
 color: var(--color-text-muted);
-font-weight: 600;
 }
+.contacts-split__map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 400;
+  font-style: var(--caption-style);
+  font-family: var(--caption-font-family);
+  line-height: 140%;
+}
+
 .site-footer {
 border-top: 1px solid var(--color-border);
 padding-block: 2rem;
@@ -676,12 +738,17 @@ font-size: 0.9rem;
 display: flex;
 flex-wrap: wrap;
 justify-content: space-between;
-align-items: center;
 gap: var(--gap-md);
 }
 .site-footer__top {
 font-weight: 600;
 color: var(--color-primary);
+}
+.footer-info {
+  opacity: 80%;
+}
+.footer-nav {
+  opacity: 80%;
 }
 /* =========================================================================
 9. БЛОК ДОКУМЕНТАЦИИ И РЕФЛЕКСИИ (ОБЯЗАТЕЛЬНО К ЗАПОЛНЕНИЮ)

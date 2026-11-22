@@ -23,8 +23,8 @@
       <nav class="main-nav" aria-label="Основная навигация">
         <ul class="main-nav__list">
           <li><a href="#benefits" class="main-nav__link">О НАС</a></li>
-          <li><a href="#showcase" class="main-nav__link">ЗАНЯТИЯ</a></li>
-          <li><a href="#pricing" class="main-nav__link">ТРЕНЕРЫ</a></li>
+          <li><a href="#pricing" class="main-nav__link">ЗАНЯТИЯ</a></li>
+          <li><a href="#showcase" class="main-nav__link">ТРЕНЕРЫ</a></li>
           <li><a href="#contacts" class="main-nav__link">АДРЕС И КОНТАКТЫ</a></li>
         </ul>
       </nav>
@@ -235,13 +235,16 @@
          ===================================================================== -->
     <section class="section section--alt" id="contacts" aria-labelledby="contacts-title">
       <div class="container">
+        <h2 id="contacts-title" class="section-title">АДРЕС И КОНТАКТЫ</h2>
         <div class="contacts-split">
           <div class="contacts-split__info">
-            <h2 id="contacts-title" class="section-title">Где нас найти</h2>
             <p class="contacts-split__address">
               г. Минск, пр-т Дзержинского, 104<br>
-              <strong>ст. м. Петровщина</strong> (3 минуты пешком)
+              <strong>(ст. м. Петровщина)</strong>
             </p>
+            <p class="ask-directions">Как добраться от метро Петровщина</p>
+            <p class="answer">Выход №1 в сторону ТЦ «Титан», далее 3 минуты пешком вдоль проспекта Дзержинского. 
+              Вход в зал со стороны главного фасада, 3 этаж.</p> 
             <dl class="contacts-meta">
               <div class="contacts-meta__row">
                 <dt>Режим работы:</dt>
@@ -249,16 +252,17 @@
               </div>
               <div class="contacts-meta__row">
                 <dt>Телефон:</dt>
-                <dd><a href="tel:+375290000000">+375 (29) 000-00-00</a></dd>
+                <dd><a href="tel:+375290000000">+375 (29) XXX-XX-XX</a></dd>
               </div>
             </dl>
             <div class="contacts-split__links">
-              <a href="#" class="btn btn--primary">Написать в Telegram</a>
+              <a href="#" class="btn btn--primary">СВЯЗАТЬСЯ С НАМИ</a>
             </div>
           </div>
 
           <div class="contacts-split__map" role="img" aria-label="Схема проезда к станции метро Петровщина">
-            <span>Интерактивная карта / Фрейм (16 : 9)</span>
+            <img src="images/map.png" width="569" height="315" alt="Изобажение части карты с меткой на тренажерном зале">
+            <p class="label">© Участники OpenStreetMap</p>
           </div>
         </div>
       </div>
@@ -267,8 +271,20 @@
 
   <footer class="site-footer">
     <div class="container site-footer__inner">
-      <p>&copy; 2026 Курс «Интернет-технологии», БГУ — Практическая работа №11</p>
-      <a href="#hero-title" class="site-footer__top">Наверх &uarr;</a>
+      <div class="footer-info">
+      <a href="#" class="logo"><img src="images/logo.svg" alt="Логотип GYMBY"><span>GYMBY</span></a>
+      <p>© 2026 GYMBY. Все права защищены.</p>
+      <p>ООО «Джимбай Фитнес», УНП 193000000, г. Минск</p>
+    </div>
+    <nav class="main-nav footer-nav">
+        <ul class="main-nav__list">
+          <li><a href="#benefits" class="main-nav__link">О НАС</a></li>
+          <li><a href="#pricing" class="main-nav__link">ЗАНЯТИЯ</a></li>
+          <li><a href="#showcase" class="main-nav__link">ТРЕНЕРЫ</a></li>
+          <li><a href="#contacts" class="main-nav__link">АДРЕС И КОНТАКТЫ</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="site-footer__top">Наверх &uarr;</a>
     </div>
   </footer>
 
