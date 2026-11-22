@@ -6,8 +6,15 @@
      N — количество букв в вашей ФАМИЛИИ
      M — количество букв в вашем ИМЕНИ
      Подставьте свои рассчитанные значения в пикселях вместо значений по умолчанию! */
-  --card-min-width: 270px;       /* Формула: (N * 10) + 210px */
-  --split-sidebar-width: 340px;  /* Формула: (M * 12) + 280px */
+
+  /* N — количество букв в ФАМИЛИИ */
+  --N: 11;
+  /* M — количество букв в вашем ИМЕНИ */
+  --M: 4;
+  /* Формула: (N * 10px) + 210px */
+  --card-min-width: calc((var(--N) * 10px) + 210px);
+  /* Формула: (M * 12px) + 280px */
+  --split-sidebar-width: calc((var(--M) * 12px) + 280px);
 
   /* Базовые отступы и сетка */
   --container-max: 1200px;
@@ -23,24 +30,10 @@
   --radius-pill: 9999px;
 
   /* Типографика */
-  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-sans:
+    system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --fs-hero: clamp(1.85rem, 4vw + 0.5rem, 3.25rem);
   --fs-h2: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
-}
-
-/* СВЕТЛАЯ ТЕМА: Студия танцев «ДВИЖ» (синий акцент, чистый светлый фон) */
-.theme-dvizh {
-  --color-bg: #ffffff;
-  --color-bg-alt: #f1f5f9;
-  --color-surface: #ffffff;
-  --color-text: #0f172a;
-  --color-text-muted: #475569;
-  --color-primary: #2563eb;
-  --color-primary-hover: #1d4ed8;
-  --color-primary-contrast: #ffffff;
-  --color-border: #cbd5e1;
-  --hero-overlay: linear-gradient(110deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.55) 100%);
-  --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
 }
 
 /* ТЁМНАЯ ТЕМА: Фитнес-клуб «GYMBY» (графитовый фон, неоново-лаймовый/оранжевый акцент) */
@@ -50,11 +43,15 @@
   --color-surface: #1b202c;
   --color-text: #f8fafc;
   --color-text-muted: #94a3b8;
-  --color-primary: #a3e635;
-  --color-primary-hover: #84cc16;
+  --color-primary: #00f5d4;
+  --color-primary-hover: #185abd;
   --color-primary-contrast: #0b0d12;
   --color-border: #2d3548;
-  --hero-overlay: linear-gradient(110deg, rgba(11, 13, 18, 0.92) 0%, rgba(11, 13, 18, 0.65) 100%);
+  --hero-overlay: linear-gradient(
+    110deg,
+    rgba(11, 13, 18, 0.92) 0%,
+    rgba(11, 13, 18, 0.65) 100%
+  );
   --shadow-card: 0 12px 30px -5px rgba(0, 0, 0, 0.45);
 }
 
@@ -139,7 +136,10 @@ input:focus-visible + * {
   border-radius: var(--radius-sm);
   border: 2px solid transparent;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease;
 }
 
 .btn--primary {
@@ -193,6 +193,9 @@ input:focus-visible + * {
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
   font-size: 1.4rem;
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -239,7 +242,8 @@ input:focus-visible + * {
 }
 
 .hero__media {
-  background: var(--hero-overlay),
+  background:
+    var(--hero-overlay),
     radial-gradient(circle at 80% 30%, #3b82f6 0%, #1e293b 65%);
 }
 
@@ -367,7 +371,10 @@ input:focus-visible + * {
    ========================================================================= */
 .showcase-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--card-min-width)), 1fr)
+  );
   gap: var(--gap-lg);
 }
 
@@ -443,137 +450,139 @@ input:focus-visible + * {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 1.75rem;
-cursor: pointer;
-transition: border-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
 /* Поддержка subgrid для выравнивания внутренних строк между карточками */
 @supports (grid-template-rows: subgrid) {
-.plan-card {
-grid-row: span 4;
-grid-template-rows: subgrid;
-}
+  .plan-card {
+    grid-row: span 4;
+    grid-template-rows: subgrid;
+  }
 }
 .plan-card__radio {
-position: absolute;
-opacity: 0;
-pointer-events: none;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
 }
 /* Нативный селектор :has() подсвечивает выбранную карточку тарифа без JS */
 .plan-card:has(.plan-card__radio:checked) {
-border-color: var(--color-primary);
-box-shadow: var(--shadow-card);
-transform: translateY(-4px);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-4px);
 }
 .plan-card__name {
-font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 .plan-card__price {
-font-size: 2rem;
-font-weight: 800;
-color: var(--color-primary);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
 }
 .plan-card__features {
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
-color: var(--color-text-muted);
-font-size: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
 }
 .plan-card__features li::before {
-content: "✓ ";
-color: var(--color-primary);
-font-weight: 700;
+  content: "✓ ";
+  color: var(--color-primary);
+  font-weight: 700;
 }
 .plan-card__action {
-align-self: end;
-width: 100%;
+  align-self: end;
+  width: 100%;
 }
 /* Нативный FAQ-аккордеон ( + ) */
 .faq-list {
-display: grid;
-gap: var(--gap-sm);
-max-width: 800px;
+  display: grid;
+  gap: var(--gap-sm);
+  max-width: 800px;
 }
 .faq-item {
-background-color: var(--color-surface);
-border: 1px solid var(--color-border);
-border-radius: var(--radius-sm);
-padding: 1rem 1.25rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
 }
 .faq-item__question {
-font-weight: 700;
-cursor: pointer;
-list-style: none;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
 }
 .faq-item__question::-webkit-details-marker {
-display: none;
+  display: none;
 }
 .faq-item__answer {
-margin-top: 0.75rem;
-color: var(--color-text-muted);
+  margin-top: 0.75rem;
+  color: var(--color-text-muted);
 }
 /* =========================================================================
 8. СПЛИТ-БЛОК КОНТАКТОВ И ПОДВАЛ (Уровень BASE)
 ========================================================================= */
 .contacts-split {
-display: grid;
-grid-template-columns: minmax(0, 1fr);
-gap: var(--gap-lg);
-align-items: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap-lg);
+  align-items: center;
 }
 @media (min-width: 768px) {
-.contacts-split {
-grid-template-columns: var(--split-sidebar-width) minmax(0, 1fr);
-}
+  .contacts-split {
+    grid-template-columns: var(--split-sidebar-width) minmax(0, 1fr);
+  }
 }
 .contacts-split__info {
-display: flex;
-flex-direction: column;
-gap: var(--gap-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
 }
 .contacts-meta {
-display: flex;
-flex-direction: column;
-gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .contacts-meta__row {
-display: flex;
-flex-wrap: wrap;
-gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 .contacts-meta dt {
-color: var(--color-text-muted);
+  color: var(--color-text-muted);
 }
 .contacts-meta dd {
-font-weight: 600;
+  font-weight: 600;
 }
 .contacts-split__map {
-aspect-ratio: 16 / 9;
-width: 100%;
-background-color: var(--color-surface);
-border: 2px dashed var(--color-border);
-border-radius: var(--radius-md);
-display: grid;
-place-items: center;
-color: var(--color-text-muted);
-font-weight: 600;
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background-color: var(--color-surface);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  display: grid;
+  place-items: center;
+  color: var(--color-text-muted);
+  font-weight: 600;
 }
 .site-footer {
-border-top: 1px solid var(--color-border);
-padding-block: 2rem;
-color: var(--color-text-muted);
-font-size: 0.9rem;
+  border-top: 1px solid var(--color-border);
+  padding-block: 2rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
 }
 .site-footer__inner {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-align-items: center;
-gap: var(--gap-md);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap-md);
 }
 .site-footer__top {
-font-weight: 600;
-color: var(--color-primary);
+  font-weight: 600;
+  color: var(--color-primary);
 }
 /* =========================================================================
 9. БЛОК ДОКУМЕНТАЦИИ И РЕФЛЕКСИИ (ОБЯЗАТЕЛЬНО К ЗАПОЛНЕНИЮ)
