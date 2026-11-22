@@ -38,14 +38,14 @@
 
 /* ТЁМНАЯ ТЕМА: Фитнес-клуб «GYMBY» (графитовый фон, неоново-лаймовый/оранжевый акцент) */
 .theme-gymby {
-  --color-bg: #0b0d12;
+  --color-bg: #0b0c10;
   --color-bg-alt: #141821;
   --color-surface: #1b202c;
-  --color-text: #f8fafc;
+  --color-text: #ffffff;
   --color-text-muted: #94a3b8;
   --color-primary: #00f5d4;
   --color-primary-hover: #185abd;
-  --color-primary-contrast: #0b0d12;
+  --color-primary-contrast: #0b0c10;
   --color-border: #2d3548;
   --hero-overlay: linear-gradient(
     110deg,
@@ -242,9 +242,19 @@ input:focus-visible + * {
 }
 
 .hero__media {
-  background:
-    var(--hero-overlay),
-    radial-gradient(circle at 80% 30%, #3b82f6 0%, #1e293b 65%);
+  grid-area: 1 / 1;
+  justify-self: center;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(15, 23, 42, 0.8) 0%,
+      rgba(15, 23, 42, 0.25) 100%
+    ),
+    url("../images/hero.jpg");
+  background-position: top center;
+  width: 100%;
+  max-width: 1200px;
+  background-size: cover;
 }
 
 .hero__grid {
