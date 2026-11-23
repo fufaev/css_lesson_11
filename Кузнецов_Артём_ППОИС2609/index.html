@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Студия танцев «ДВИЖ» — Минск</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="theme-dvizh">
+
+  <!-- =====================================================================
+       ШАПКА САЙТА (Уровень BASE: Flexbox + margin-left: auto)
+       ===================================================================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="#" class="logo">ДВИЖ<span>.</span></a>
+
+      <nav class="main-nav" aria-label="Основная навигация">
+        <ul class="main-nav__list">
+          <li><a href="#hero" class="main-nav__link">О студии</a></li>
+          <li><a href="#teachers" class="main-nav__link">Педагоги</a></li>
+          <li><a href="#contacts" class="main-nav__link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <!-- Кнопка оттолкнута вправо через margin-left: auto без лишних обёрток -->
+      <a href="#contacts" class="btn btn--accent site-header__cta">Записаться</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- =====================================================================
+         ПЕРВЫЙ ЭКРАН (HERO) С НАЛОЖЕНИЕМ НА CSS GRID (Без position: absolute)
+         ===================================================================== -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero__media">
+        <img
+          src="images/photo.jpg"
+          alt="Группа учеников танцует на занятии в светлом зале студии"
+          class="hero__img"
+        >
+      </div>
+
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <span class="badge">Первое занятие — бесплатно</span>
+          <h1 id="hero-title" class="hero__title">
+            НАУЧИСЬ КРУТО ТАНЦЕВАТЬ
+          </h1>
+          <p class="hero__subtitle">
+            Студия танцев для детей от 7 лет и взрослых в Минске. 6 направлений и группы по уровню подготовки.
+          </p>
+          <a href="#contacts" class="btn btn--accent">Хочу на пробное занятие</a>
+        </div>
+
+        <aside class="hero__floating-card" aria-label="Ключевая статистика">
+          <strong class="hero__floating-number">6</strong>
+          <p class="hero__floating-text">
+            направлений для детей и взрослых: хип-хоп, хилс, джаз-фанк, бачата, брейкинг, контемпорари
+          </p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         ВИТРИНА ПЕДАГОГОВ (Уровень BASE)
+         Сетка: repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr))
+         Внутри каждой карточки — вертикальный Flexbox с прижатием кнопки книзу.
+         ===================================================================== -->
+    <section class="section section--alt" id="teachers" aria-labelledby="teachers-title">
+      <div class="container">
+        <header class="section-header">
+          <h2 id="teachers-title" class="section-title">ПЕДАГОГИ</h2>
+          <p class="section-desc">Хореографы со стажем от 5 лет и опытом выступлений на чемпионатах</p>
+        </header>
+
+        <div class="showcase-grid">
+          <article class="profile-card">
+            <div class="profile-card__media">
+              <img
+                src="images/1.png"
+                alt="Педагог Алина Мельник, хип-хоп и хилс"
+                class="profile-card__img"
+              >
+            </div>
+            <div class="profile-card__body">
+              <h3 class="profile-card__title">Алина Мельник</h3>
+              <p class="profile-card__role">Хип-хоп, хилс</p>
+              <p class="profile-card__text">
+                Ставит энергичную хореографию с акцентом на музыкальность, подачу и уверенность на сцене.
+              </p>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">Записаться в группу</a>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-card__media">
+              <img
+                src="images/2.png"
+                alt="Педагог Дарья Ковалёва, джаз-фанк"
+                class="profile-card__img"
+              >
+            </div>
+            <div class="profile-card__body">
+              <h3 class="profile-card__title">Дарья Ковалёва</h3>
+              <p class="profile-card__role">Джаз-фанк</p>
+              <p class="profile-card__text">
+                Помогает новичкам раскрепоститься с первых занятий и выстроить чёткую технику движений.
+              </p>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">Записаться в группу</a>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-card__media">
+              <img
+                src="images/3.png"
+                alt="Педагог Марина Лис, бачата"
+                class="profile-card__img"
+              >
+            </div>
+            <div class="profile-card__body">
+              <h3 class="profile-card__title">Марина Лис</h3>
+              <p class="profile-card__role">Бачата</p>
+              <p class="profile-card__text">
+                Обучает пластике, ведению в паре и импровизации для вечерних танцевальных вечеринок.
+              </p>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">Записаться в группу</a>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-card__media">
+              <img
+                src="images/4.png"
+                alt="Педагог Вероника Жук, контемпорари"
+                class="profile-card__img"
+              >
+            </div>
+            <div class="profile-card__body">
+              <h3 class="profile-card__title">Вероника Жук</h3>
+              <p class="profile-card__role">Контемпорари</p>
+              <p class="profile-card__text">
+                Работает с балансом, дыханием и выразительностью тела в современной сценической пластике.
+              </p>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">Записаться в группу</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         АСИММЕТРИЧНЫЙ СПЛИТ-БЛОК КОНТАКТОВ (Уровень BASE)
+         Две колонки: слева ширина var(--split-sidebar-width), справа 1fr.
+         На экранах < 768px перестраивается в 1 колонку.
+         ===================================================================== -->
+    <section class="section section--primary" id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="contacts-split">
+          <div class="contacts-split__info">
+            <h2 id="contacts-title" class="section-title">КОНТАКТЫ</h2>
+            <p class="contacts-split__address">
+              г. Минск, ул. Условная, д. 1, 3 этаж<br>
+              <strong>Студия танцев «ДВИЖ»</strong>
+            </p>
+            <dl class="contacts-meta">
+              <div class="contacts-meta__row">
+                <dt>Режим работы:</dt>
+                <dd>Пн–Пт 10:00–22:00, Сб–Вс 10:00–18:00</dd>
+              </div>
+              <div class="contacts-meta__row">
+                <dt>Телефон:</dt>
+                <dd><a href="tel:+375290000000">+375 (29) 000-00-00</a></dd>
+              </div>
+            </dl>
+            <div class="contacts-split__links">
+              <a href="tel:+375290000000" class="btn btn--accent">Связаться с нами</a>
+            </div>
+          </div>
+
+          <div class="contacts-split__map">
+            <img
+              src="images/map.jpg"
+              alt="Схема проезда к студии танцев «ДВИЖ», ул. Условная, 1"
+              class="contacts-split__map-img"
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <a href="#" class="logo logo--footer">ДВИЖ<span>.</span></a>
+      <p>&copy; 2026 Студия танцев «ДВИЖ» — Курс «Интернет-технологии», БГУ</p>
+      <a href="#hero" class="site-footer__top">Наверх &uarr;</a>
+    </div>
+  </footer>
+
+</body>
+</html>
