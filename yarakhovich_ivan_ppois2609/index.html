@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<!-- 
-  ПОДСКАЗКА ПО ТЕМАМ (Design System из Figma):
-  Для светлой палитры («ДВИЖ») используйте класс: class="theme-dvizh"
-  Для тёмной палитры («GYMBY») используйте класс: class="theme-gymby"
--->
 
 <body class="theme-gymby">
 
@@ -26,8 +21,8 @@
             <nav class="main-nav" aria-label="Основная навигация">
                 <ul class="main-nav__list">
                     <li><a href="#benefits" class="main-nav__link">О нас</a></li>
-                    <li><a href="#showcase" class="main-nav__link">Занятия</a></li>
-                    <li><a href="#pricing" class="main-nav__link">Тренеры</a></li>
+                    <li><a href="#showcase" class="main-nav__link">Тренеры</a></li>
+                    <li><a href="#pricing" class="main-nav__link">Занятия</a></li>
                     <li><a href="#contacts" class="main-nav__link">Адрес и контакты</a></li>
                 </ul>
             </nav>
@@ -131,7 +126,8 @@
             <div class="container">
                 <header class="section-header">
                     <h2 id="showcase-title" class="section-title">Команда профессиональных тренеров</h2>
-                    <p class="section-desc">Сертифицированные специалисты с многолетним опытом, которые помогут достичь ваших целей</p>
+                    <p class="section-desc">Сертифицированные специалисты с многолетним опытом, которые помогут достичь
+                        ваших целей</p>
                 </header>
 
                 <div class="showcase-grid">
@@ -193,43 +189,49 @@
         <section class="section" id="pricing" aria-labelledby="pricing-title">
             <div class="container">
                 <header class="section-header">
-                    <h2 id="pricing-title" class="section-title">Форматы сотрудничества</h2>
-                    <p class="section-desc">Интерактивный выбор тарифа на чистом CSS без JavaScript</p>
+                    <h2 id="pricing-title" class="section-title">Занятия</h2>
+                    <p class="section-desc">При покупке любого абонемента на срок от двух месяцев и более дарим одну
+                        персональную тренировку в подарок. Запишитесь прямо сейчас, чтобы зафиксировать бонус за вашим
+                        номером</p>
                 </header>
 
                 <div class="pricing-grid">
                     <label class="plan-card">
                         <input type="radio" name="plan" value="start" class="plan-card__radio">
-                        <h3 class="plan-card__name">Старт</h3>
-                        <p class="plan-card__price">450 BYN</p>
+                        <h3 class="plan-card__name">Дневной</h3>
+                        <p class="plan-card__price">90 BYN / мес</p>
                         <ul class="plan-card__features">
-                            <li>Лендинг до 5 секций</li>
-                            <li>Адаптив 320px — 1440px</li>
+                            <li>Посещение с 7:00 до 17:00</li>
+                            <li>Тренажёрный зал</li>
+                            <li>Кардио-зона</li>
+                            <li>Вводный инструктаж</li>
                         </ul>
-                        <span class="btn btn--outline plan-card__action">Выбрать тариф</span>
+                        <span class="btn btn--outline plan-card__action">Записаться</span>
                     </label>
 
                     <label class="plan-card">
                         <input type="radio" name="plan" value="pro" class="plan-card__radio" checked>
-                        <h3 class="plan-card__name">Оптимальный</h3>
-                        <p class="plan-card__price">890 BYN</p>
+                        <h3 class="plan-card__name">Безлимит</h3>
+                        <p class="plan-card__price">130 BYN / мес</p>
                         <ul class="plan-card__features">
-                            <li>Многостраничный сайт или витрина</li>
-                            <li>Дизайн-система на CSS-токенах</li>
-                            <li>Базовая SEO и a11y-оптимизация</li>
-                            <li>Сборка под портфолио на GitHub</li>
+                            <li>Круглосуточный доступ 24/7</li>
+                            <li>Все зоны клуба</li>
+                            <li>Групповые тренировки по расписанию</li>
+                            <li>Сауна</li>
                         </ul>
-                        <span class="btn btn--primary plan-card__action">Выбрать тариф</span>
+                        <span class="btn btn--primary plan-card__action">Записаться</span>
                     </label>
 
                     <label class="plan-card">
                         <input type="radio" name="plan" value="studio" class="plan-card__radio">
-                        <h3 class="plan-card__name">Премиум</h3>
-                        <p class="plan-card__price">1 450 BYN</p>
+                        <h3 class="plan-card__name">С тренером</h3>
+                        <p class="plan-card__price">280 BYN / мес</p>
                         <ul class="plan-card__features">
-                            <li>Индивидуальный UI-кит в Figma</li>
-                            <li>Сложные Bento-сетки и subgrid</li>
-                            <li>Поддержка после запуска 30 дней</li>
+                            <li>Индивидуальный график</li>
+                            <li>Безлимит в зал, 12 персональных тренировок в месяц</li>
+                            <li>Индивидуальный план питания</li>
+                            <li>Регулярные замеры прогресса</li>
+                            <li>Доступ в сауну и сопровождение куратора в чате</li>
                         </ul>
                         <span class="btn btn--outline plan-card__action">Выбрать тариф</span>
                     </label>
@@ -238,19 +240,16 @@
                 <!-- Нативный аккордеон вопросов без JS (Уровень PRO: <details> + <summary>) -->
                 <div class="faq-list">
                     <details class="faq-item">
-                        <summary class="faq-item__question">Можно ли использовать эти секции в итоговом Сайте-Портфолио?
-                        </summary>
+                        <summary class="faq-item__question">18:00 — Кроссфит (Зал №1)</summary>
                         <p class="faq-item__answer">
-                            Да! Каждый блок (Hero, Bento-сетка, витрина кейсов и контакты) спроектирован как независимый
-                            модуль, который легко перенести в ваш финальный проект.
+                            Интенсивная функциональная тренировка для любого уровня подготовки. С собой иметь сменную
+                            обувь и воду.
                         </p>
                     </details>
                     <details class="faq-item">
-                        <summary class="faq-item__question">Почему в работе запрещён JavaScript?</summary>
+                        <summary class="faq-item__question">19:30 — Бокс (Ринг)</summary>
                         <p class="faq-item__answer">
-                            Современный CSS (Grid, Flexbox, :has(), clamp()) и HTML5 (&lt;details&gt;, &lt;dialog&gt;)
-                            закрывают большинство задач раскладки и базового интерактива нативно и без лишней нагрузки
-                            на браузер.
+                            Постановка удара и работа на снарядах.
                         </p>
                     </details>
                 </div>
@@ -266,7 +265,7 @@
             <div class="container">
                 <div class="contacts-split">
                     <div class="contacts-split__info">
-                        <h2 id="contacts-title" class="section-title">Где нас найти</h2>
+                        <h2 id="contacts-title" class="section-title">Адрес и контакты</h2>
                         <p class="contacts-split__address">
                             г. Минск, пр-т Дзержинского, 104<br>
                             <strong>ст. м. Петровщина</strong> (3 минуты пешком)
@@ -274,7 +273,7 @@
                         <dl class="contacts-meta">
                             <div class="contacts-meta__row">
                                 <dt>Режим работы:</dt>
-                                <dd>Пн–Сб, 09:00 – 21:00</dd>
+                                <dd>Пн–Вс, 00:00 – 24:00</dd>
                             </div>
                             <div class="contacts-meta__row">
                                 <dt>Телефон:</dt>
@@ -286,8 +285,9 @@
                         </div>
                     </div>
 
-                    <div class="contacts-split__map" role="img" aria-label="Схема проезда к станции метро Петровщина">
-                        <span>Интерактивная карта / Фрейм (16 : 9)</span>
+                    <div class="contacts-split__map">
+                        <img src="images/map.jpg"
+                            alt="Схема проезда: г. Минск, пр-т Дзержинского, 104, ст. м. Петровщина" loading="lazy">
                     </div>
                 </div>
             </div>
