@@ -78,8 +78,8 @@
 
     <!-- =====================================================================
          BENTO-СЕТКА ПРЕИМУЩЕСТВ (Уровень JUNIOR)
-         Несимметричная журнальная сетка: карточки с .bento-card--wide (span 2)
-         и .bento-card--tall (grid-row: span 2) на десктопе (>= 1024px).
+         Несимметричная журнальная сетка: карточки с широкая карточка (span 2)
+         и высокая карточка (grid-row: span 2) на десктопе (>= 1024px).
          ===================================================================== -->
     <section class="section" id="benefits" aria-labelledby="benefits-title">
       <div class="container">
@@ -134,7 +134,7 @@
 
     <!-- =====================================================================
          ВИТРИНА КОМАНДЫ / КЕЙСОВ (Уровень BASE)
-         Сетка: repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr))
+         Сетка: адаптивное размещение карточек через CSS Grid
          Внутри каждой карточки — Flexbox с прижатием кнопки книзу.
          ===================================================================== -->
     <section class="section section--alt" id="showcase" aria-labelledby="showcase-title">
@@ -228,10 +228,17 @@
           </h2>
         </header>
 
+        
         <div class="pricing-grid">
-          <label class="plan-card">
-            <input type="radio" name="plan" value="day"
-                  class="plan-card__radio">
+          <article class="plan-card">
+            <input
+              type="radio"
+              id="plan-day"
+              name="plan"
+              value="day"
+              class="plan-card__radio"
+              aria-label="Дневной"
+            >
 
             <h3 class="plan-card__name">Дневной</h3>
             <p class="plan-card__price">90 BYN / мес</p>
@@ -241,14 +248,23 @@
               <li>Тренажёрный зал, кардио-зона, вводный инструктаж.</li>
             </ul>
 
-            <span class="btn btn--outline plan-card__action">
+            <label for="plan-day" class="btn btn--outline plan-card__action">
               ЗАПИСАТЬСЯ
-            </span>
-          </label>
+            </label>
 
-          <label class="plan-card">
-            <input type="radio" name="plan" value="unlimited"
-                  class="plan-card__radio" checked>
+            <label for="plan-day" class="plan-card__hitbox"></label>
+          </article>
+
+          <article class="plan-card">
+            <input
+              type="radio"
+              id="plan-unlimited"
+              name="plan"
+              value="unlimited"
+              class="plan-card__radio"
+              aria-label="Безлимит"
+              checked
+            >
 
             <h3 class="plan-card__name">Безлимит</h3>
             <p class="plan-card__price">130 BYN / мес</p>
@@ -258,29 +274,41 @@
               <li>Все зоны клуба, групповые тренировки по расписанию, сауна.</li>
             </ul>
 
-            <span class="btn btn--outline plan-card__action">
+            <label for="plan-unlimited" class="btn btn--outline plan-card__action">
               ЗАПИСАТЬСЯ
-            </span>
-          </label>
+            </label>
 
-          <label class="plan-card">
-            <input type="radio" name="plan" value="trainer"
-                  class="plan-card__radio">
+            <label for="plan-unlimited" class="plan-card__hitbox"></label>
+          </article>
+
+          <article class="plan-card">
+            <input
+              type="radio"
+              id="plan-trainer"
+              name="plan"
+              value="trainer"
+              class="plan-card__radio"
+              aria-label="С тренером"
+            >
 
             <h3 class="plan-card__name">С тренером</h3>
             <p class="plan-card__price">280 BYN / мес</p>
 
             <ul class="plan-card__features">
               <li>Индивидуальный график</li>
-              <li>Безлимит в зал, 12 персональных тренировок в месяц,
-                  индивидуальный план питания, регулярные замеры прогресса,
-                  доступ в сауну и сопровождение куратора в чате.</li>
+              <li>
+                Безлимит в зал, 12 персональных тренировок в месяц,
+                индивидуальный план питания, регулярные замеры прогресса,
+                доступ в сауну и сопровождение куратора в чате.
+              </li>
             </ul>
 
-            <span class="btn btn--outline plan-card__action">
+            <label for="plan-trainer" class="btn btn--outline plan-card__action">
               ЗАПИСАТЬСЯ
-            </span>
-          </label>
+            </label>
+
+            <label for="plan-trainer" class="plan-card__hitbox"></label>
+          </article>
         </div>
 
         <!-- Нативный аккордеон вопросов без JS (Уровень PRO: <details> + <summary>) -->
@@ -303,7 +331,7 @@
 
     <!-- =====================================================================
          АСИММЕТРИЧНЫЙ СПЛИТ-БЛОК КОНТАКТОВ (Уровень BASE)
-         Две колонки: слева ширина var(--split-sidebar-width), справа 1fr.
+         Две колонки: слева индивидуальная ширина, справа оставшееся пространство.
          На экранах < 768px перестраивается в 1 колонку.
          ===================================================================== -->
     <section class="section section--alt" id="contacts" aria-labelledby="contacts-title">

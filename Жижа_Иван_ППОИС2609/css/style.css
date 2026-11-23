@@ -444,6 +444,7 @@ input:focus-visible + * {
 }
 
 .plan-card {
+  position: relative;
   min-width: 0;
   display: grid;
   gap: var(--gap-sm);
@@ -451,9 +452,10 @@ input:focus-visible + * {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 1.75rem;
-cursor: pointer;
-transition: border-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
+
 /* Поддержка subgrid для выравнивания внутренних строк между карточками */
 @supports (grid-template-rows: subgrid) {
 .plan-card {
@@ -492,14 +494,24 @@ content: "✓ ";
 color: var(--color-primary);
 font-weight: 700;
 }
+
 .plan-card__action {
-align-self: end;
-width: 100%;
+  position: relative;
+  z-index: 2;
+  align-self: end;
+  width: 100%;
+}
+
+.plan-card__hitbox {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: pointer;
 }
 
 .plan-card:has(.plan-card__radio:checked) .plan-card__action {
   background-color: var(--color-primary);
-  border-color: var(--color-primary);
+  border-color: transparent;
   color: var(--color-primary-contrast);
 }
 
@@ -607,19 +619,19 @@ color: var(--color-primary);
 }
 /* =========================================================================
 9. БЛОК ДОКУМЕНТАЦИИ И РЕФЛЕКСИИ (ОБЯЗАТЕЛЬНО К ЗАПОЛНЕНИЮ)
-========================================================================= /
-/ Своими словами
+========================================================================= */
+/* Своими словами
 1. [BASE] Почему для сетки витрины (.showcase-grid) мы применили формулу
 repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr)),
 а не жёсткие 3 колонки repeat(3, 1fr)? Какую роль здесь играет функция min()?
-Ответ:
+Ответ: auto-fit автоматически подбирает количество колонок в зависимости от ширины контейнера. minmax() задаёт минимальную ширину карточки и позволяет ей растягиваться. min() не даёт минимальной ширине превысить доступную ширину контейнера. Благодаря этому карточки корректно отображаются даже на экране 320px
 2. [BASE] Зачем внутри карточки .profile-card мы оставили display: flex; flex-direction: column;,
 хотя сама сетка карточек построена на CSS Grid?
-Ответ:
+Ответ: Grid отвечает за расположение карточек относительно друг друга. Flexbox управляет содержимым каждой карточки по вертикали. Свойство margin-top: auto прижимает кнопку к нижнему краю, даже если описания специалистов имеют разную длину
 3. [JUNIOR] Как в секции .hero удалось наложить плавающую карточку (.hero__floating-card)
 поверх фонового слоя (.hero__media) без использования position: absolute?
-Ответ:
+Ответ: Фон .hero__media и контейнер .hero__grid занимают одну область родительской сетки благодаря grid-area: 1 / 1. Поэтому контент отображается поверх фонового изображения. Плавающая карточка размещается внутри вложенной Grid-сетки. Абсолютное позиционирование для этой раскладки не требуется
 4. [PRO] Какую задачу решает свойство grid-template-rows: subgrid внутри карточек
 тарифов (.plan-card) по сравнению с обычной раскладкой?
-Ответ:
+Ответ: subgrid позволяет карточкам тарифов использовать строки родительской Grid-сетки. Благодаря этому заголовки, цены, описания и кнопки разных тарифов выравниваются по общим линиям, даже если количество текста отличается
 */
