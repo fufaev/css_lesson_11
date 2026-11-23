@@ -11,21 +11,24 @@
   Для светлой палитры («ДВИЖ») используйте класс: class="theme-dvizh"
   Для тёмной палитры («GYMBY») используйте класс: class="theme-gymby"
 -->
-<body class="theme-dvizh">
+<body class="theme-gymby">
 
   <!-- =====================================================================
        ШАПКА САЙТА (Уровень BASE: Flexbox + margin-left: auto)
        ===================================================================== -->
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="#" class="logo">STUDIO<span>.DEV</span></a>
+      <a href="#" class="logo">
+        <img src="images/logo.svg" alt="" width="28" height="28">
+        <span>GYMBY</span>
+      </a>
 
       <nav class="main-nav" aria-label="Основная навигация">
         <ul class="main-nav__list">
-          <li><a href="#benefits" class="main-nav__link">Преимущества</a></li>
-          <li><a href="#showcase" class="main-nav__link">Команда и кейсы</a></li>
-          <li><a href="#pricing" class="main-nav__link">Тарифы</a></li>
-          <li><a href="#contacts" class="main-nav__link">Контакты</a></li>
+          <li><a href="#benefits" class="main-nav__link">О НАС</a></li>
+          <li><a href="#pricing" class="main-nav__link">ЗАНЯТИЯ</a></li>
+          <li><a href="#showcase" class="main-nav__link">ТРЕНЕРЫ</a></li>
+          <li><a href="#contacts" class="main-nav__link">АДРЕС И КОНТАКТЫ</a></li>
         </ul>
       </nav>
 
@@ -47,22 +50,27 @@
       <!-- Слой 2: Контент поверх фона (заголовок слева + плавающая карточка справа снизу) -->
       <div class="container hero__grid">
         <div class="hero__content">
-          <span class="badge">Дизайн-система &amp; CSS Grid</span>
-          <!-- Адаптивный размер шрифта через clamp() (Уровень PRO) -->
+          <span class="badge">ФИТНЕС-КЛУБ GYMBY</span>
+
           <h1 id="hero-title" class="hero__title">
-            СОЗДАЁМ ЦИФРОВЫЕ ПРОДУКТЫ И ПРОСТРАНСТВА НОВОГО УРОВНЯ
+            ТВОЙ ПУТЬ К ИДЕАЛЬНОМУ ТЕЛУ В МИНСКЕ
           </h1>
+
           <p class="hero__subtitle">
-            Коммерческая архитектура интерфейсов без лишних фреймворков и костылей.
+            Наши профессиональные инструкторы помогут вам
+            оставаться активными и здоровыми.
           </p>
-          <a href="#showcase" class="btn btn--primary">Смотреть направления</a>
+
+          <a href="#contacts" class="btn btn--primary">
+            ЗАПИСАТЬСЯ
+          </a>
         </div>
 
         <!-- Плавающая карточка-информер (как в макете «ДВИЖ») -->
         <aside class="hero__floating-card" aria-label="Ключевая статистика">
-          <strong class="hero__floating-number">6+</strong>
+          <strong class="hero__floating-number">3</strong>
           <p class="hero__floating-text">
-            актуальных направлений разработки и дизайна под ключ
+            профессиональных тренера помогут достичь ваших целей
           </p>
         </aside>
       </div>
@@ -76,40 +84,48 @@
     <section class="section" id="benefits" aria-labelledby="benefits-title">
       <div class="container">
         <header class="section-header">
-          <h2 id="benefits-title" class="section-title">Почему выбирают нас</h2>
-          <p class="section-desc">Bento-архитектура: модульность, скорость и адаптивность</p>
+          <h2 id="benefits-title" class="section-title">НАШИ ПРЕИМУЩЕСТВА</h2>
         </header>
 
         <div class="bento-grid">
           <article class="bento-card bento-card--wide">
-            <span class="bento-card__tag">01 / Архитектура</span>
-            <h3 class="bento-card__title">Grid снаружи — Flexbox внутри</h3>
+            <h3 class="bento-card__title">
+              Профессиональный тренерский состав
+            </h3>
             <p class="bento-card__text">
-              Глобальный каркас строится на двумерной сетке, а выравнивание внутри компонентов — на гибких флексах.
+              Достигайте целей под руководством сертифицированных
+              тренеров и мастеров спорта с многолетним опытом работы.
             </p>
           </article>
 
           <article class="bento-card bento-card--tall">
-            <span class="bento-card__tag">02 / Адаптивность</span>
-            <h3 class="bento-card__title">От 320px до 4K</h3>
+            <h3 class="bento-card__title">
+              Премиальное оборудование
+            </h3>
             <p class="bento-card__text">
-              Автоматическая перестройка колонок через <code>auto-fit</code> и <code>minmax()</code> без десятков медиазапросов и горизонтального скролла.
+              Тренируйтесь на современных и безопасных тренажерах
+              от ведущих мировых брендов.
             </p>
           </article>
 
           <article class="bento-card">
-            <span class="bento-card__tag">03 / Скорость</span>
-            <h3 class="bento-card__title">Zero-JS интерактив</h3>
+            <h3 class="bento-card__title">
+              Безлимитный формат занятий
+            </h3>
             <p class="bento-card__text">
-              Нативные состояния через <code>:has()</code> и <code>&lt;details&gt;</code> работают мгновенно.
+              Выбирайте удобное время для тренировок без ограничений
+              по количеству посещений и длительности нахождения в зале.
             </p>
           </article>
 
           <article class="bento-card">
-            <span class="bento-card__tag">04 / Токены</span>
-            <h3 class="bento-card__title">Единый стиль Figma</h3>
+            <h3 class="bento-card__title">
+              Удобное расположение
+            </h3>
             <p class="bento-card__text">
-              Переключение между светлой и тёмной темой сменой одного класса на <code>&lt;body&gt;</code>.
+              Наш фитнес-клуб находится в шаговой доступности
+              от метро, с бесплатной просторной парковкой
+              для клиентов.
             </p>
           </article>
         </div>
@@ -124,52 +140,74 @@
     <section class="section section--alt" id="showcase" aria-labelledby="showcase-title">
       <div class="container">
         <header class="section-header">
-          <h2 id="showcase-title" class="section-title">Команда и проекты</h2>
-          <p class="section-desc">Готовые модульные карточки для вашего будущего Сайта-Портфолио</p>
+          <h2 id="showcase-title" class="section-title">
+            КОМАНДА ПРОФЕССИОНАЛЬНЫХ ТРЕНЕРОВ
+          </h2>
         </header>
 
         <div class="showcase-grid">
           <article class="profile-card">
-            <!-- Изображение/заглушка с фиксированной пропорцией aspect-ratio: 3 / 4 -->
-            <div class="profile-card__media" role="img" aria-label="Фото специалиста 1">
-              <span>3 : 4</span>
-            </div>
+            <img
+              class="profile-card__media"
+              src="images/trainer-alexey.jpg"
+              alt="Тренер Алексей Соколов"
+            >
             <div class="profile-card__body">
-              <h3 class="profile-card__title">Алексей Громов</h3>
-              <p class="profile-card__role">Lead Frontend Architect</p>
-              <p class="profile-card__text">
-                Проектирует дизайн-системы и сложные адаптивные интерфейсы.
+              <h3 class="profile-card__title">Алексей Соколов</h3>
+              <p class="profile-card__role">
+                Тренер тренажёрного зала и кроссфита
               </p>
-              <a href="#contacts" class="btn btn--outline profile-card__btn">Смотреть кейс</a>
+              <p class="profile-card__text">
+                Мастер спорта по тяжёлой атлетике,
+                опыт работы 8 лет.
+              </p>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">
+                Записаться
+              </a>
             </div>
           </article>
 
           <article class="profile-card">
-            <div class="profile-card__media" role="img" aria-label="Фото специалиста 2">
-              <span>3 : 4</span>
-            </div>
+            <img
+              class="profile-card__media"
+              src="images/trainer-elena.jpg"
+              alt="Тренер Елена Ковалёва"
+            >
             <div class="profile-card__body">
-              <h3 class="profile-card__title">Марина Соколова</h3>
-              <p class="profile-card__role">UI/UX Product Designer</p>
-              <p class="profile-card__text">
-                Создаёт визуальные концепции в Figma с продуманной типографикой, контрастом и сетками для мобильных и десктопных версий продуктов.
+              <h3 class="profile-card__title">Елена Ковалёва</h3>
+              <p class="profile-card__role">
+                Инструктор групповых программ
               </p>
-              <a href="#contacts" class="btn btn--outline profile-card__btn">Смотреть кейс</a>
+              <p class="profile-card__text">
+                Специалист по йоге и стретчингу.
+                Сертифицированный нутрициолог, стаж 6 лет.
+              </p>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">
+                Записаться
+              </a>
             </div>
           </article>
 
           <article class="profile-card">
-            <div class="profile-card__media" role="img" aria-label="Фото специалиста 3">
-              <span>3 : 4</span>
-            </div>
+            <img
+              class="profile-card__media"
+              src="images/trainer-dmitry.jpg"
+              alt="Тренер Дмитрий Морозов"
+            >
             <div class="profile-card__body">
-              <h3 class="profile-card__title">Дмитрий Ковалёв</h3>
-              <p class="profile-card__role">Accessibility &amp; Performance Engineer</p>
-              <!-- Стресс-тест неделимым словом длиной 46+ символов на 320px (Уровень PRO) -->
+              <h3 class="profile-card__title">Дмитрий Морозов</h3>
+              <p class="profile-card__role">
+                Тренер по боксу и функциональному тренингу
+              </p>
+              <p class="profile-card__text">
+                КМС по боксу, подготовка к соревнованиям.
+              </p>
               <p class="profile-card__text profile-card__stress">
-                Модуль_проверки: Критическая_ошибка_переполнения_GridTrackMinmax320pxTest
+                Критическая_ошибка_переполнения_GridTrackMinmax320pxTest
               </p>
-              <a href="#contacts" class="btn btn--outline profile-card__btn">Смотреть кейс</a>
+              <a href="#contacts" class="btn btn--outline profile-card__btn">
+                Записаться
+              </a>
             </div>
           </article>
         </div>
@@ -252,31 +290,48 @@
          ===================================================================== -->
     <section class="section section--alt" id="contacts" aria-labelledby="contacts-title">
       <div class="container">
+        <h2 id="contacts-title" class="section-title">
+          АДРЕС И КОНТАКТЫ
+        </h2>
+
         <div class="contacts-split">
           <div class="contacts-split__info">
-            <h2 id="contacts-title" class="section-title">Где нас найти</h2>
             <p class="contacts-split__address">
-              г. Минск, пр-т Дзержинского, 104<br>
-              <strong>ст. м. Петровщина</strong> (3 минуты пешком)
+              г. Минск, пр-т Дзержинского, 104
+              (ст. м. Петровщина)
             </p>
+
+            <h3>Как добраться от метро Петровщина</h3>
+
+            <p>
+              Выход №1 в сторону ТЦ «Титан», далее 3 минуты
+              пешком вдоль проспекта Дзержинского.
+              Вход в зал со стороны главного фасада, 3 этаж.
+            </p>
+
             <dl class="contacts-meta">
               <div class="contacts-meta__row">
-                <dt>Режим работы:</dt>
-                <dd>Пн–Сб, 09:00 – 21:00</dd>
-              </div>
-              <div class="contacts-meta__row">
                 <dt>Телефон:</dt>
-                <dd><a href="tel:+375290000000">+375 (29) 000-00-00</a></dd>
+                <dd>
+                  <a href="tel:+375291234567">
+                    +375 (29) 123-45-67
+                  </a>
+                </dd>
               </div>
             </dl>
+
             <div class="contacts-split__links">
-              <a href="#" class="btn btn--primary">Написать в Telegram</a>
+              <a href="tel:+375291234567" class="btn btn--primary">
+                СВЯЗАТЬСЯ С НАМИ
+              </a>
             </div>
           </div>
 
-          <div class="contacts-split__map" role="img" aria-label="Схема проезда к станции метро Петровщина">
-            <span>Интерактивная карта / Фрейм (16 : 9)</span>
-          </div>
+          <img
+            class="contacts-split__map"
+            src="images/map.png"
+            alt="Карта расположения фитнес-клуба GYMBY возле станции метро Петровщина"
+          >
         </div>
       </div>
     </section>
