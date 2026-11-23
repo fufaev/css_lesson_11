@@ -1,0 +1,832 @@
+/* =========================================================================
+   1. ИНДИВИДУАЛЬНЫЕ ПАРАМЕТРЫ И ДИЗАЙН-ТОКЕНЫ ИЗ FIGMA
+   ========================================================================= */
+:root {
+  /* ИНДИВИДУАЛЬНЫЕ ФОРМУЛЫ (Анти-ИИ):
+     N — количество букв в вашей ФАМИЛИИ
+     M — количество букв в вашем ИМЕНИ
+     Подставьте свои рассчитанные значения в пикселях вместо значений по умолчанию! */
+  --card-min-width: calc((6 * 10px) + 210px);       /* Формула: (N * 10) + 210px, N = 6 (Мамчиц)*/
+  --split-sidebar-width: calc((4 * 12px) + 280px);  /* Формула: (M * 12) + 280px, M = 4 (Иван)*/
+
+  /* Базовые отступы и сетка */
+  --container-max: 1200px;
+  --container-pad-inline-ph: 16px;
+  --container-pad-block-ph: 24px;
+  --container-pad-block-logo-ph: 13px;
+  --gap-sm: 24px;
+  --gap-ph: 16px;
+  --gap-cards-ph: 20px;
+  --bento-pad-block-ph: 24px;
+  --bento-pad-inline-ph: 32px;
+  --cards-pad-ph: 32px;
+  --bento-gap-ph: 12px;
+  --tutor-gap-pad-ph: 24px;
+  --contacts-gap-ph: 24px;
+  --tutors-gap: 23px;
+  --footer-gap: 24px;
+  --gap-lg: 2rem;
+  --footer-logo-gap: 4px;
+
+  --header-padding-block-des: 30px;
+  --header-gap-des: 32px;
+  --cards-gap-des: 25px;
+  --contacts-pad-des: 30px;
+  --contacts-gap-des: 30px;
+
+  /* Скругления из UI-кита Figma */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+
+  /* Типографика */
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --fs-hero: clamp(1.85rem, 4vw + 0.5rem, 3.25rem);
+  --fs-h2: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+  /*Шапка*/
+  --caption-font-family: 'Inter', sans-serif;
+  --caption-style: normal;
+  --caption-weight: 700;
+  --caption-size: 24px;
+  --caption-line-height: 130%;
+
+  --body-regular-font-family: 'Inter', sans-serif;
+  --body-regular-style: normal;
+  --body-regular-weight: 400;
+  --body-regular-size: 16px;
+  --body-regular-height: 150%;
+
+  --heading-h1-font-family: 'Montserrat', sans-serif;
+  --heading-h1-style: normal;
+  --heading-h1-weight: 700;
+  --heading-h1-size: 64px;
+  --heading-h1-height: 120%;
+
+  --heading-h2-font-family: 'Inter', sans-serif;
+  --heading-h2-style: normal;
+  --heading-h2-weight: 700;
+  --heading-h2-size: 40px;
+  --heading-h2-height: 120%;
+
+  --heading-h3-font-family: 'Inter', sans-serif;
+  --heading-h3-style: normal;
+  --heading-h3-weight: 400;
+  --heading-h3-size: 24px;
+  --heading-h3-height: 130%;
+
+  --body-label-family: 'Inter', sans-serif;
+  --body-label-style: normal;
+  --body-label-weight: 400;
+  --body-label-size: 16px;
+  --body-label-height: 100%;
+}
+
+/* СВЕТЛАЯ ТЕМА: Студия танцев «ДВИЖ» (синий акцент, чистый светлый фон) */
+.theme-dvizh {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f1f5f9;
+  --color-surface: #ffffff;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-primary-contrast: #ffffff;
+  --color-border: #cbd5e1;
+  --hero-overlay: linear-gradient(110deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.55) 100%);
+  --shadow-card: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+}
+
+/* ТЁМНАЯ ТЕМА: Фитнес-клуб «GYMBY» (графитовый фон, неоново-лаймовый/оранжевый акцент) */
+.theme-gymby {
+  --color-background: #0B0C10;
+  --color-bg: #0B0C10;
+  --color-bg-alt: #141821;
+  --color-surface: #1F2833;
+  --color-text: #FFF;
+  --color-text-muted: #FFF;
+  --color-primary: #00F5D4;
+  --color-primary-hover: #185ABD;
+  --color-primary-contrast: #0B0C10;
+  --color-border: #FFF;
+  --hero-overlay: linear-gradient(110deg, rgba(11, 13, 18, 0.92) 0%, rgba(11, 13, 18, 0.65) 100%);
+  --shadow-card: 0 12px 30px -5px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================================================
+   2. СБРОС СТИЛЕЙ И ДОСТУПНОСТЬ (A11Y)
+   ========================================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+@media (min-width: 1200px) {
+    body {
+        padding-inline: 120px;
+    }
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Чёткий фокус для навигации с клавиатуры (Tab) */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible + * {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad-inline-ph);
+  padding-block: var(--container-pad-block-ph);
+}
+
+.section-title {
+  overflow-wrap: anywhere;
+  font-family: var(--heading-h2-font-family);
+  font-style: var(--heading-h2-style);
+  font-weight: var(--heading-h2-weight);
+  font-size: var(--heading-h2-size);
+  line-height: var(--heading-h2-height);
+  margin-bottom: var(--gap-ph);
+}
+
+@media(min-width: 1200px) {
+  .section-title {
+    margin-bottom: 30px;
+  }
+  .container {
+    padding-inline: 0;
+    padding-block: 30px;
+  }
+}
+
+.section-desc {
+  color: var(--color-text-muted);
+}
+
+/* Кнопки и бейджи */
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--container-pad-block-ph) var(--container-pad-inline-ph);
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  font-family: var(--body-label-family);
+  font-style: var(--body-label-style);
+  font-weight: var(--body-label-weight);
+  font-size: var(--body-label-size);
+  line-height: var(--body-label-height);
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary-hover);
+  color: var(--color-text);
+}
+
+.btn--outline {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  background-color: transparent;
+}
+
+.btn--outline:hover {
+  border-color: var(--color-primary);
+}
+
+/*.badge {
+  display: inline-block;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+}*/
+
+/* =========================================================================
+   3. ШАПКА САЙТА (Уровень BASE: Flexbox + margin-left: auto)
+   ========================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-background);
+}
+
+.container.site-header__inner {
+  padding: var(--container-pad-inline-ph);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--header-gap-des);
+}
+
+@media (min-width: 1200px) {
+  .container.site-header__inner{
+    padding-block: var(--header-padding-block-des);
+    padding-inline: 0;
+    justify-content: space-between;
+  }
+  
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--caption-size);
+  font-weight: var(--caption-weight);
+  letter-spacing: -0.03em;
+  font-style: var(--caption-style);
+  font-family: var(--caption-font-family);
+  line-height: var(--caption-line-height);
+  gap: 13px;
+  padding-block: var(--container-pad-block-logo-ph);
+}
+
+.logo span {
+  color: var(--color-primary);
+}
+
+.main-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-ph);
+}
+
+.main-nav__link {
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
+  color: var(--color-text-muted);
+}
+
+.main-nav__link:hover {
+  color: var(--color-primary);
+}
+
+/* Отталкиваем кнопку вправо без лишних обёрток */
+.site-header__cta {
+  margin-left: auto;
+}
+
+/* =========================================================================
+   4. HERO-БАННЕР С НАЛОЖЕНИЕМ НА CSS GRID (Уровень JUNIOR)
+   Запрещено использовать position: absolute!
+   ========================================================================= */
+.hero {
+  display: grid;
+  min-height: 520px;
+  color: #ffffff;
+}
+
+/* Оба слоя занимают одну и ту же ячейку сетки (1 / 1) */
+.hero__media,
+.hero__grid {
+  grid-area: 1 / 1;
+}
+
+.hero__media {
+  background-image: url(../images/hero.png);
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: var(--gap-ph);
+}
+
+@media(min-width: 1200px) {
+  .hero__grid {
+    padding: 60px 30px 30px;
+  }
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /*gap: var(--gap-md);*/
+  max-width: 650px;
+}
+
+.hero__title {
+  font-family: var(--heading-h1-font-family);
+  font-style: var(--heading-h1-style);
+  font-size: var(--heading-h1-size);
+  line-height: var(--heading-h1-height);
+  font-weight: var(--heading-h1-weight);
+  min-width: 0;
+  overflow-wrap: break-word;    
+}
+
+.hero__subtitle {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+}
+
+/* Плавающая акцентная карточка (как в макете «ДВИЖ») */
+.hero__floating-card {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  max-width: 280px;
+  box-shadow: var(--shadow-card);
+}
+
+.hero__floating-number {
+  display: block;
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.hero__floating-text {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.sign-up-section {
+    font-family: var(--heading-h3-font-family);
+    font-style: var(--heading-h3-style);
+    font-weight: var(--heading-h3-weight);
+    font-size: var(--heading-h3-size);
+    line-height: var(--heading-h3-height);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-ph);
+    /*align-items: flex-start;*/
+}
+
+@media (min-width: 900px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: ". title" 
+                         "sign-up-section hero__floating-card";
+  }
+
+  .hero__title {
+    grid-area: title;
+  }
+  .sign-up-section {
+    display: flex;
+    flex-direction: column;
+    grid-area: sign-up-section;
+    gap: 41px;
+    align-items: flex-start;
+  }
+
+  .hero__floating-card {
+    justify-self: end;
+    align-self: end;
+    grid-area: hero__floating-card;
+  }
+}
+
+/* =========================================================================
+   5. BENTO-СЕТКА ПРЕИМУЩЕСТВ (Уровень JUNIOR)
+   ========================================================================= */
+.bento-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap-ph);
+}
+
+.bento-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bento-gap-ph);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding-block: var(--bento-pad-block-ph);
+  padding-inline: var(--bento-pad-inline-ph);
+  box-shadow: var(--shadow-card);
+}
+
+.bento-card__tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.bento-card__title {
+  font-family: var(--heading-h3-font-family);
+  font-style: var(--heading-h3-style);
+  font-weight: var(--heading-h3-weight);
+  font-size: var(--heading-h3-size);
+  line-height: var(--heading-h3-height);
+}
+
+.bento-card__text {
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
+  color: var(--color-text-muted);
+}
+
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .bento-card--wide {
+    grid-column: span 2;
+  }
+
+  .bento-card--tall {
+    grid-row: span 2;
+    /*background-color: var(--color-bg-alt);*/
+  }
+}
+
+/* =========================================================================
+   6. ВИТРИНА КОМАНДЫ / КЕЙСОВ (Уровень BASE + Стресс-тест 320px)
+   ========================================================================= */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr));
+  gap: var(--tutors-gap);
+}
+
+.profile-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  /*padding: 12px 24px;*/
+  gap: var(--tutor-gap-pad-ph);
+  padding: var(--tutor-gap-pad-ph);
+}
+
+.profile-card__media {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.profile-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-card__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--tutor-gap-pad-ph);
+}
+
+.profile-card__title {
+  font-family: var(--heading-h3-font-family);
+  font-style: var(--heading-h3-style);
+  font-weight: var(--heading-h3-weight);
+  font-size: var(--heading-h3-size);
+  line-height: var(--heading-h3-height);
+}
+
+.profile-card__role {
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
+  color: var(--color-primary);
+}
+
+.profile-card__text {
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
+  color: var(--color-text-muted);
+}
+
+/* Защита от переполнения длинным техническим словом на 320px */
+.profile-card__stress {
+  overflow-wrap: anywhere;
+  /*font-family: monospace;
+  font-size: 0.85rem;*/
+}
+
+/* Прижимаем кнопку к низу карточки */
+.profile-card__btn {
+  margin-top: auto;
+  width: 100%;
+}
+
+/* =========================================================================
+   7. ТАРИФЫ И FAQ БЕЗ JAVASCRIPT (Уровень PRO: :has(), subgrid, <details>)
+   ========================================================================= */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  /*gap: var(--gap-md);*/
+  margin-bottom: var(--gap-ph);
+}
+@media(min-width: 500px) {
+  .pricing-grid {
+    gap: var(--cards-gap-des);
+  }
+}
+
+.plan-card {
+  min-width: 0;
+  display: grid;
+  gap: var(--gap-cards-ph);
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--cards-pad-ph);
+cursor: pointer;
+transition: border-color 0.2s ease, transform 0.2s ease;
+}
+/* Поддержка subgrid для выравнивания внутренних строк между карточками */
+@supports (grid-template-rows: subgrid) {
+.plan-card {
+grid-row: span 4;
+grid-template-rows: subgrid;
+}
+}
+.plan-card__radio {
+position: absolute;
+opacity: 0;
+pointer-events: none;
+}
+/* Нативный селектор :has() подсвечивает выбранную карточку тарифа без JS */
+.plan-card:has(.plan-card__radio:checked) {
+border-color: var(--color-primary);
+box-shadow: var(--shadow-card);
+transform: translateY(-4px);
+}
+.plan-card__name {
+  font-family: var(--heading-h3-font-family);
+  font-style: var(--heading-h3-style);
+  font-weight: var(--heading-h3-weight);
+  font-size: var(--heading-h3-size);
+  line-height: var(--heading-h3-height);
+}
+.plan-card__price {
+  font-family: var(--heading-h2-font-family);
+  font-style: var(--heading-h2-style);
+  font-weight: var(--heading-h2-weight);
+  font-size: var(--heading-h2-size);
+  line-height: var(--heading-h2-height);
+color: var(--color-primary);
+}
+.plan-card__features {
+display: flex;
+flex-direction: column;
+gap: var(--gap-ph);
+color: var(--color-text-muted);
+  font-family: var(--body-label-family);
+  font-style: var(--body-label-style);
+  font-weight: var(--body-label-weight);
+  font-size: var(--body-label-size);
+  line-height: var(--body-label-height);
+}
+.plan-card__features li::before {
+content: "✓ ";
+color: var(--color-primary);
+font-weight: 700;
+}
+.plan-card__action {
+align-self: end;
+width: 100%;
+}
+/* Нативный FAQ-аккордеон ( + ) */
+.faq-list {
+display: grid;
+gap: var(--gap-sm);
+max-width: 350px;
+}
+.faq-item {
+background-color: var(--color-surface);
+border-radius: var(--radius-sm);
+/*padding: 1rem 1.25rem;*/
+}
+.faq-item__question {
+font-weight: 700;
+cursor: pointer;
+list-style: none;
+}
+.faq-item__question::-webkit-details-marker {
+display: none;
+}
+.faq-item__answer {
+margin-top: var(--gap-ph);
+color: var(--color-text-muted);
+}
+
+/* =========================================================================
+8. СПЛИТ-БЛОК КОНТАКТОВ И ПОДВАЛ (Уровень BASE)
+========================================================================= */
+.contacts-split {
+display: grid;
+grid-template-columns: minmax(0, 1fr);
+align-items: center;
+gap: var(--contacts-gap-ph);
+}
+
+@media (min-width: 1200px) {
+.contacts-split {
+grid-template-columns: var(--split-sidebar-width) minmax(0, 1fr);
+padding: var(--contacts-pad-des);
+}
+.contacts-split .contacts-split__info {
+  gap: var(--contacts-gap-des);
+}
+}
+
+@media (max-width: 1200px) {
+  .contacts-split__info {
+    order: 2;
+  }
+  .contacts-split__map {
+    order: 1;
+  }
+}
+
+.contacts-split__info {
+display: flex;
+flex-direction: column;
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
+  gap: var(--contacts-gap-ph);
+}
+
+.ask-directions {
+  font-family: var(--heading-h3-font-family);
+  font-style: var(--heading-h3-style);
+  font-weight: var(--heading-h3-weight);
+  font-size: var(--heading-h3-size);
+  line-height: var(--heading-h3-height);
+}
+
+.answer {
+  font-family: var(--body-regular-font-family);
+  font-style: var(--body-regular-style);
+  font-weight: var(--body-regular-weight);
+  font-size: var(--body-regular-size);
+  line-height: var(--body-regular-height);
+}
+
+.contacts-meta {
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+}
+.contacts-meta__row {
+display: flex;
+flex-wrap: wrap;
+gap: 0.5rem;
+}
+.contacts-meta dt {
+color: var(--color-text-muted);
+}
+.contacts-meta dd {
+font-weight: 600;
+}
+.contacts-split__map {
+aspect-ratio: 16 / 9;
+width: 100%;
+/*background-color: var(--color-surface);
+border: 2px dashed var(--color-border);*/
+border-radius: var(--radius-md);
+display: grid;
+place-items: end;
+color: var(--color-text-muted);
+}
+.contacts-split__map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 400;
+  font-style: var(--caption-style);
+  font-family: var(--caption-font-family);
+  line-height: 140%;
+  opacity: 40%;
+}
+
+.site-footer {
+border-top: 1px solid var(--color-border);
+/*padding-block: 2rem;*/
+color: var(--color-text-muted);
+font-size: 0.9rem;
+}
+.site-footer__inner {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+gap: var(--footer-gap);
+/*gap: var(--gap-md);*/
+}
+.site-footer__top {
+font-weight: 600;
+color: var(--color-primary);
+}
+.footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--footer-logo-gap);
+  opacity: 40%;
+}
+.footer-nav {
+  opacity: 40%;
+}
+@media(min-width: 500px) {
+  .site-footer__inner {
+    padding: 5px 0 0;
+  }
+  .logo {
+    padding: 0;
+  }
+}
+
+/* =========================================================================
+9. БЛОК ДОКУМЕНТАЦИИ И РЕФЛЕКСИИ (ОБЯЗАТЕЛЬНО К ЗАПОЛНЕНИЮ)
+========================================================================= */
+/* Своими словами
+1. [BASE] Почему для сетки витрины (.showcase-grid) мы применили формулу
+repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr)),
+а не жёсткие 3 колонки repeat(3, 1fr)? Какую роль здесь играет функция min()?
+Ответ: чтобы количество помещающихся в ряду карточек рассчитывалось динамически, в зависимости размера самой карточки,
+необходимого по содержанию карточки и размера экрана. Функция позволяет под 1 fraction выделить места меньше, 
+чем его необходимо было по содержимому карточки, но чтобы она вся помещалась и не было горизонтальной прокрутки.
+2. [BASE] Зачем внутри карточки .profile-card мы оставили display: flex; flex-direction: column;,
+хотя сама сетка карточек построена на CSS Grid?
+Ответ: чтобы содержимое карточки могло растягиваться в зависимости от ее контента и иметь возможность 
+прижать кнопку "Смотреть кейс книзу".
+3. [JUNIOR] Как в секции .hero удалось наложить плавающую карточку (.hero__floating-card)
+поверх фонового слоя (.hero__media) без использования position: absolute?
+Ответ: через свойство grid-area: 1 / 1; для обоих, которое позволяет одну и ту же область делить между несколькими 
+компонентами, из-за того, что по HTML-коду плавающая карточка идет позже, она располагается "выше".
+4. [PRO] Какую задачу решает свойство grid-template-rows: subgrid внутри карточек
+тарифов (.plan-card) по сравнению с обычной раскладкой?
+Ответ: позволяет выравнивать по "линейке" отдельные блоки через наследование от общих строк родительского контейнера 
+внутренней сетки карточек. 
+*/
