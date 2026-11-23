@@ -1,0 +1,240 @@
+/* =========================================================================
+   1. ИНДИВИДУАЛЬНЫЕ ПАРАМЕТРЫ И ДИЗАЙН-ТОКЕНЫ ИЗ FIGMA
+   ========================================================================= */
+:root {
+  /* ИНДИВИДУАЛЬНЫЕ ФОРМУЛЫ (Анти-ИИ):
+     N = 6 (Корзун)    -> (6 * 10) + 210px = 270px
+     M = 9 (Анастасия) -> (9 * 12) + 280px = 388px */
+  --card-min-width: 270px;
+  --split-sidebar-width: 388px;
+
+  /* Базовые отступы и сетка (шаг 8px из макета Figma) */
+  --container-max: 1200px;
+  --container-pad: 1.25rem;
+  --gap-sm: 0.75rem;
+  --gap-md: 1.5rem;
+  --gap-lg: 2rem;
+
+  /* Скругления из UI-кита Figma: карточки 24px, кнопки — «пилюли» 32px */
+  --radius-sm: 12px;
+  --radius-md: 24px;
+  --radius-pill: 32px;
+
+  /* Типографика: Montserrat из командной дизайн-системы Figma */
+  --font-sans: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --fs-hero: clamp(2.5rem, 6vw + 0.5rem, 6rem);
+  --fs-h2: clamp(1.75rem, 3vw + 0.5rem, 4rem);
+}
+
+/* СВЕТЛАЯ ТЕМА: Студия танцев «ДВИЖ» (палитра из Figma Design System:
+   Primary #2D4BD6, Secondary #FFA800, Dark #111111, Light #FFFFFF) */
+.theme-dvizh {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f4f6fb;
+  --color-surface: #ffffff;
+  --color-text: #111111;
+  --color-text-muted: #4b5563;
+  --color-primary: #2d4bd6;
+  --color-primary-hover: #1e38b5;
+  --color-primary-contrast: #ffffff;
+  --color-secondary: #ffa800;
+  --color-secondary-hover: #e59700;
+  --color-secondary-contrast: #111111;
+  --color-dark: #111111;
+  --color-border: #dce2f0;
+  --hero-overlay: linear-gradient(110deg, rgba(17, 17, 17, 0.85) 0%, rgba(17, 17, 17, 0.45) 100%);
+  --shadow-card: 0 10px 25px -5px rgba(17, 17, 17, 0.08);
+}
+
+/* ТЁМНАЯ ТЕМА: Фитнес-клуб «GYMBY» (запасной вариант из методички) */
+.theme-gymby {
+  --color-bg: #0b0d12;
+  --color-bg-alt: #141821;
+  --color-surface: #1b202c;
+  --color-text: #f8fafc;
+  --color-text-muted: #94a3b8;
+  --color-primary: #a3e635;
+  --color-primary-hover: #84cc16;
+  --color-primary-contrast: #0b0d12;
+  --color-secondary: #fb923c;
+  --color-secondary-hover: #f97316;
+  --color-secondary-contrast: #0b0d12;
+  --color-dark: #0b0d12;
+  --color-border: #2d3548;
+  --hero-overlay: linear-gradient(110deg, rgba(11, 13, 18, 0.92) 0%, rgba(11, 13, 18, 0.65) 100%);
+  --shadow-card: 0 12px 30px -5px rgba(0, 0, 0, 0.45);
+}
+
+/* =========================================================================
+   2. СБРОС СТИЛЕЙ И ДОСТУПНОСТЬ (A11Y)
+   ========================================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Чёткий фокус для навигации с клавиатуры (Tab) */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+.plan-card:focus-within {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  padding-block: clamp(3rem, 8vw, 6rem);
+}
+
+.section--alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section-header {
+  margin-bottom: 2.5rem;
+  max-width: 640px;
+}
+
+.section-title {
+  font-size: var(--fs-h2);
+  line-height: 1.1;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.section-desc {
+  color: var(--color-text-muted);
+}
+
+/* Кнопки по компоненту Button из Figma: Default — Secondary с тёмным
+   текстом, Hover — Primary с белым текстом (контрасты проверены WebAIM) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn--primary {
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-contrast);
+}
+
+.btn--primary:hover {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.btn--outline {
+  border-color: var(--color-border);
+  color: var(--color-text);
+  background-color: transparent;
+}
+
+.btn--outline:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-contrast);
+}
+
+/* =========================================================================
+   3. ШАПКА САЙТА (Уровень BASE: Flexbox + margin-left: auto)
+   ========================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-md);
+  padding-block: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.logo span {
+  color: var(--color-secondary);
+}
+
+.main-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-md);
+}
+
+.main-nav__link {
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.main-nav__link:hover {
+  color: var(--color-primary);
+}
+
+/* Отталкиваем кнопку вправо без лишних обёрток */
+.site-header__cta {
+  margin-left: auto;
+}
