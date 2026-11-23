@@ -369,7 +369,7 @@ input:focus-visible + * {
 
   .bento-card--tall {
     grid-row: span 2;
-    background-color: var(--color-bg-alt);
+    background-color: var(--color-surface);
   }
 }
 
