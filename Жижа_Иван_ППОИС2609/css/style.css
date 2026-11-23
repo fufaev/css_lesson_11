@@ -496,6 +496,13 @@ font-weight: 700;
 align-self: end;
 width: 100%;
 }
+
+.plan-card:has(.plan-card__radio:checked) .plan-card__action {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
 /* Нативный FAQ-аккордеон ( + ) */
 .faq-list {
 display: grid;
