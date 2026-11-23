@@ -1,0 +1,501 @@
+/* =========================================================================
+   1. ИНДИВИДУАЛЬНЫЕ ПАРАМЕТРЫ И ДИЗАЙН-ТОКЕНЫ ИЗ FIGMA
+   ========================================================================= */
+:root {
+  /* ИНДИВИДУАЛЬНЫЕ ФОРМУЛЫ (Анти-ИИ):
+     N = 8 (Кузнецов) -> (8 * 10) + 210px = 290px
+     M = 5 (Артём)    -> (5 * 12) + 280px = 340px */
+  --card-min-width: 290px;
+  --split-sidebar-width: 340px;
+
+  /* Базовые отступы и сетка */
+  --container-max: 1200px;
+  --container-pad: 1.25rem;
+  --gap-sm: 0.75rem;
+  --gap-md: 1.25rem;
+  --gap-lg: 1.5rem;
+
+  /* Скругления из UI-кита Figma */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 9999px;
+
+  /* Типографика */
+  --font-sans: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --fs-hero: clamp(1.75rem, 4.5vw + 0.5rem, 3.75rem);
+  --fs-h2: clamp(1.5rem, 2.5vw + 0.5rem, 2.5rem);
+}
+
+/* СВЕТЛАЯ ТЕМА: Студия танцев «ДВИЖ» (палитра из Figma Design System) */
+.theme-dvizh {
+  --color-bg: #ffffff;
+  --color-bg-alt: #f4f6fb;
+  --color-surface: #ffffff;
+  --color-text: #111111;
+  --color-text-muted: #4b5563;
+  --color-primary: #2d4bd6;
+  --color-primary-hover: #1e38b5;
+  --color-primary-contrast: #ffffff;
+  --color-secondary: #ffa800;
+  --color-secondary-hover: #e59700;
+  --color-secondary-contrast: #111111;
+  --color-dark: #111111;
+  --color-border: #dce2f0;
+  --hero-overlay: linear-gradient(110deg, rgba(17, 17, 17, 0.82) 0%, rgba(17, 17, 17, 0.45) 100%);
+  --shadow-card: 0 10px 25px -5px rgba(17, 17, 17, 0.08);
+}
+
+/* =========================================================================
+   2. СБРОС СТИЛЕЙ И ДОСТУПНОСТЬ (A11Y)
+   ========================================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Чёткий фокус для навигации с клавиатуры (Tab) */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  padding-block: 4.5rem;
+}
+
+.section--alt {
+  background-color: var(--color-bg-alt);
+}
+
+.section--primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.section-header {
+  margin-bottom: 2.5rem;
+  max-width: 640px;
+}
+
+.section-title {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.15;
+  margin-bottom: 0.5rem;
+}
+
+.section-desc {
+  color: var(--color-text-muted);
+}
+
+/* Кнопки и бейджи из компонента Button в Figma */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: var(--radius-pill);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn--accent {
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-contrast);
+}
+
+.btn--accent:hover {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.btn--outline {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: transparent;
+}
+
+.btn--outline:hover {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-secondary);
+  color: var(--color-secondary-contrast);
+}
+
+/* =========================================================================
+   3. ШАПКА САЙТА (Уровень BASE: Flexbox + margin-left: auto)
+   ========================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-sm) var(--gap-md);
+  padding-block: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+}
+
+.logo span {
+  color: var(--color-secondary);
+}
+
+.logo--footer {
+  color: #ffffff;
+}
+
+.main-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-sm) var(--gap-md);
+}
+
+.main-nav__link {
+  font-weight: 500;
+  color: var(--color-text);
+  transition: color 0.2s ease;
+}
+
+.main-nav__link:hover {
+  color: var(--color-primary);
+}
+
+/* Отталкиваем кнопку вправо без лишних обёрток */
+.site-header__cta {
+  margin-left: auto;
+}
+
+/* =========================================================================
+   4. HERO-БАННЕР С НАЛОЖЕНИЕМ НА CSS GRID (Без position: absolute)
+   ========================================================================= */
+.hero {
+  display: grid;
+  min-height: 520px;
+  color: #ffffff;
+}
+
+/* Все три слоя занимают одну и ту же ячейку сетки (1 / 1) */
+.hero__media,
+.hero__overlay,
+.hero__grid {
+  grid-area: 1 / 1;
+}
+
+.hero__media {
+  overflow: hidden;
+  background-color: var(--color-dark);
+}
+
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  z-index: 1;
+  background: var(--hero-overlay);
+}
+
+.hero__grid {
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: var(--gap-lg);
+  padding-block: 3.5rem;
+}
+
+.hero__content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-md);
+  max-width: 650px;
+}
+
+.hero__title {
+  font-size: var(--fs-hero);
+  line-height: 1.05;
+  font-weight: 800;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.hero__subtitle {
+  font-size: 1.05rem;
+  color: #f3f4f6;
+}
+
+.hero__floating-card {
+  min-width: 0;
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  max-width: 300px;
+  box-shadow: var(--shadow-card);
+}
+
+.hero__floating-number {
+  display: block;
+  font-size: 2.5rem;
+  line-height: 1;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.hero__floating-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+@media (min-width: 900px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr);
+  }
+
+  .hero__floating-card {
+    justify-self: end;
+    align-self: end;
+  }
+}
+
+/* =========================================================================
+   5. ВИТРИНА ПЕДАГОГОВ (Уровень BASE + Защита 320px)
+   ========================================================================= */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr));
+  gap: var(--gap-lg);
+}
+
+.profile-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.profile-card__media {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  background-color: var(--color-primary);
+  overflow: hidden;
+}
+
+.profile-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.profile-card__body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--gap-sm);
+  padding: 1.5rem;
+}
+
+.profile-card__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.profile-card__role {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.profile-card__text {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+/* Прижимаем кнопку к низу карточки */
+.profile-card__btn {
+  margin-top: auto;
+  width: 100%;
+}
+
+/* =========================================================================
+   6. СПЛИТ-БЛОК КОНТАКТОВ И ПОДВАЛ (Уровень BASE)
+   ========================================================================= */
+.contacts-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap-lg);
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .contacts-split {
+    grid-template-columns: var(--split-sidebar-width) minmax(0, 1fr);
+  }
+}
+
+.contacts-split__info {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-md);
+}
+
+.contacts-split__address {
+  font-size: 1.05rem;
+}
+
+.contacts-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contacts-meta__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.contacts-meta dt {
+  opacity: 0.85;
+}
+
+.contacts-meta dd {
+  font-weight: 600;
+}
+
+.contacts-split__links .btn--accent:hover {
+  background-color: #ffffff;
+  color: var(--color-text);
+}
+
+.contacts-split__map {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.contacts-split__map-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.site-footer {
+  background-color: var(--color-dark);
+  padding-block: 2rem;
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--gap-md);
+}
+
+.site-footer__top {
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+/* =========================================================================
+   7. БЛОК ДОКУМЕНТАЦИИ И РЕФЛЕКСИИ (ОБЯЗАТЕЛЬНО К ЗАПОЛНЕНИЮ)
+   ========================================================================= */
+/* Своими словами
+1. [BASE] Почему для сетки витрины (.showcase-grid) мы применили формулу
+repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr)),
+а не жёсткие 3 колонки repeat(3, 1fr)? Какую роль здесь играет функция min()?
+Ответ: Жёсткие 3 колонки (repeat(3, 1fr)) на узких экранах сжимают карточки до нечитаемой ширины и вызывают горизонтальную прокрутку, а auto-fit автоматически переносит карточки на новые строки по мере нехватки места. Функция min(100%, var(--card-min-width)) нужна для экранов уже 290px (например, на 320px с учётом боковых отступов контейнера): она ограничивает минимальную ширину трека значением 100% ширины родителя и не даёт карточке вылезти за пределы вьюпорта.
+
+2. [BASE] Зачем внутри карточки .profile-card мы оставили display: flex; flex-direction: column;,
+хотя сама сетка карточек построена на CSS Grid?
+Ответ: CSS Grid отвечает за двумерную раскладку всей витрины карточек и выравнивает высоту карточек в одном ряду по самой высокой из них. Внутренний вертикальный Flexbox внутри .profile-card__body (в связке с flex-grow: 1 и margin-top: auto у кнопки) позволяет прижать кнопку действия к нижнему краю карточки независимо от длины описания педагога.
+
+3. [JUNIOR] Как в секции .hero удалось наложить плавающую карточку (.hero__floating-card)
+поверх фонового слоя (.hero__media) без использования position: absolute?
+Ответ: Контейнер .hero объявлен как CSS Grid, а его дочерние слои (.hero__media, .hero__overlay и .hero__grid) помещены в одну и ту же ячейку сетки с помощью grid-area: 1 / 1. Благодаря этому они перекрывают друг друга в потоке документа без вырывания из раскладки через position: absolute, а высота секции автоматически подстраивается под содержимое.
+
+4. [PRO] Какую задачу решает свойство grid-template-rows: subgrid внутри карточек
+тарифов (.plan-card) по сравнению с обычной раскладкой?
+Ответ: В обычной раскладке соседние карточки не знают о высоте внутренних строк друг друга, поэтому заголовки, цены и списки преимуществ могут смещаться по вертикали при разном объёме текста. Свойство grid-template-rows: subgrid позволяет карточкам наследовать общие строчные треки родительской сетки и строго выравнивать однотипные элементы по горизонтали.
+*/
