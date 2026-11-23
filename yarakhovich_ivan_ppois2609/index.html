@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практическая работа №11 — Коммерческая витрина и Портфолио</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="theme-gymby">
+
+    <!-- =====================================================================
+       ШАПКА САЙТА (Уровень BASE: Flexbox + margin-left: auto)
+       ===================================================================== -->
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a href="#" class="logo"><img src="images/icons/logo-icon.svg" alt="">GYMBY</a>
+
+            <nav class="main-nav" aria-label="Основная навигация">
+                <ul class="main-nav__list">
+                    <li><a href="#benefits" class="main-nav__link">О нас</a></li>
+                    <li><a href="#showcase" class="main-nav__link">Тренеры</a></li>
+                    <li><a href="#pricing" class="main-nav__link">Занятия</a></li>
+                    <li><a href="#contacts" class="main-nav__link">Адрес и контакты</a></li>
+                </ul>
+            </nav>
+
+            <!-- Кнопка должна быть оттолкнута вправо через margin-left: auto (без лишних обёрток) -->
+            <a href="#contacts" class="btn btn--primary site-header__cta">Записаться</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- =====================================================================
+         HERO-БАННЕР С НАЛОЖЕНИЕМ НА CSS GRID (Уровень JUNIOR)
+         ВНИМАНИЕ: Использование position: absolute для карточки запрещено!
+         Фон, затемнение и контент должны занимать одну область grid-area: 1 / 1.
+         ===================================================================== -->
+        <section class="hero" aria-labelledby="hero-title">
+            <!-- Слой 1: Фоновое изображение или градиентный плейсхолдер -->
+            <div class="hero__media" role="img" aria-label="Атмосфера студии и пространства"></div>
+
+            <!-- Слой 2: Контент поверх фона (заголовок слева + плавающая карточка справа снизу) -->
+            <div class="container hero__grid">
+                <div class="hero__content">
+                    <span class="badge">Фитнес-клуб в Минске</span>
+                    <!-- Адаптивный размер шрифта через clamp() (Уровень PRO) -->
+                    <h1 id="hero-title" class="hero__title">
+                        ТВОЙ ПУТЬ К ИДЕАЛЬНОМУ ТЕЛУ В МИНСКЕ
+                    </h1>
+                    <p class="hero__subtitle">
+                        Наши профессиональные инструкторы помогут вам оставаться активными и здоровыми.
+                    </p>
+                    <a href="#showcase" class="btn btn--primary">Смотреть направления</a>
+                </div>
+
+                <!-- Плавающая карточка-информер (как в макете «ДВИЖ») -->
+                <aside class="hero__floating-card" aria-label="Ключевая статистика">
+                    <strong class="hero__floating-number">6+</strong>
+                    <p class="hero__floating-text">
+                        актуальных направлений фитнеса и групповых тренировок
+                    </p>
+                </aside>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         BENTO-СЕТКА ПРЕИМУЩЕСТВ (Уровень JUNIOR)
+         Несимметричная журнальная сетка: карточки с .bento-card--wide (span 2)
+         и .bento-card--tall (grid-row: span 2) на десктопе (>= 1024px).
+         ===================================================================== -->
+        <section class="section" id="benefits" aria-labelledby="benefits-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="benefits-title" class="section-title">Наши преимущества</h2>
+                    <p class="section-desc">Почему выбирают фитнес-клуб GYMBY в Минске</p>
+                </header>
+
+                <div class="bento-grid">
+                    <article class="bento-card bento-card--wide">
+                        <span class="bento-card__tag">01 / Команда</span>
+                        <h3 class="bento-card__title">Профессиональный тренерский состав</h3>
+                        <p class="bento-card__text">
+                            Достигайте целей под руководством сертифицированных тренеров и мастеров спорта с многолетним
+                            опытом работы.
+                        </p>
+                    </article>
+
+                    <article class="bento-card bento-card--tall">
+                        <span class="bento-card__tag">02 / Оснащение</span>
+                        <h3 class="bento-card__title">Премиальное оборудование</h3>
+                        <p class="bento-card__text">
+                            Тренируйтесь на современных и безопасных тренажёрах от ведущих мировых брендов.
+                        </p>
+                    </article>
+
+                    <article class="bento-card">
+                        <span class="bento-card__tag">03 / Свобода</span>
+                        <h3 class="bento-card__title">Безлимитный формат занятий</h3>
+                        <p class="bento-card__text">
+                            Выбирайте удобное время для тренировок без ограничений по количеству посещений и
+                            длительности нахождения в зале.
+                        </p>
+                    </article>
+
+                    <article class="bento-card">
+                        <span class="bento-card__tag">04 / Локация</span>
+                        <h3 class="bento-card__title">Удобное расположение</h3>
+                        <p class="bento-card__text">
+                            Наш фитнес-клуб находится в шаговой доступности от метро, с бесплатной просторной парковкой
+                            для клиентов.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         ВИТРИНА КОМАНДЫ / КЕЙСОВ (Уровень BASE)
+         Сетка: repeat(auto-fit, minmax(min(100%, var(--card-min-width)), 1fr))
+         Внутри каждой карточки — Flexbox с прижатием кнопки книзу.
+         ===================================================================== -->
+        <section class="section section--alt" id="showcase" aria-labelledby="showcase-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="showcase-title" class="section-title">Команда профессиональных тренеров</h2>
+                    <p class="section-desc">Сертифицированные специалисты с многолетним опытом, которые помогут достичь
+                        ваших целей</p>
+                </header>
+
+                <div class="showcase-grid">
+                    <article class="profile-card">
+                        <!-- Изображение с фиксированной пропорцией aspect-ratio: 3 / 4 -->
+                        <div class="profile-card__media" role="img">
+                            <img src="images/1.jpg" alt="Алексей Соколов" class="profile-card__img">
+                        </div>
+                        <div class="profile-card__body">
+                            <h3 class="profile-card__title">Алексей Соколов</h3>
+                            <p class="profile-card__role">Старший тренер тренажёрного зала</p>
+                            <p class="profile-card__text">
+                                Тренер тренажерного зала и кроссфита. Мастер спорта по тяжелой атлетике, опыт работы 8
+                                лет.
+                            </p>
+                            <a href="#contacts" class="btn btn--outline profile-card__btn">Записаться</a>
+                        </div>
+                    </article>
+
+                    <article class="profile-card">
+                        <div class="profile-card__media" role="img">
+                            <img src="images/2.jpg" alt="Елена Ковалёва" class="profile-card__img">
+                        </div>
+                        <div class="profile-card__body">
+                            <h3 class="profile-card__title">Елена Ковалёва</h3>
+                            <p class="profile-card__role">Тренер по йоге и стретчингу</p>
+                            <p class="profile-card__text">
+                                Инструктор групповых программ, йоги и стретчинга. Сертифицированный нутрициолог, стаж 6
+                                лет
+                            </p>
+                            <a href="#contacts" class="btn btn--outline profile-card__btn">Записаться</a>
+                        </div>
+                    </article>
+
+                    <article class="profile-card">
+                        <div class="profile-card__media" role="img">
+                            <img src="images/3.jpg" alt="Дмитрий Морозов" class="profile-card__img">
+                        </div>
+                        <div class="profile-card__body">
+                            <h3 class="profile-card__title">Дмитрий Морозов</h3>
+                            <p class="profile-card__role">Тренер по боксу и функциональному тренингу</p>
+                            <!-- Стресс-тест неделимым словом длиной 46+ символов на 320px (Уровень PRO) -->
+                            <p class="profile-card__text profile-card__stress">
+                                Тренер_по_боксу_и_функциональному_тренингу_КМС_по_боксу_подготовка_к_соревнованиям
+                            </p>
+                            <a href="#contacts" class="btn btn--outline profile-card__btn">Записаться</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         ТАРИФЫ И FAQ БЕЗ JAVASCRIPT (Уровень PRO)
+         1. Выделение выбранной карточки через :has(input[type="radio"]:checked)
+         2. Выравнивание строк внутри карточек через grid-template-rows: subgrid
+         3. Аккордеон вопросов через нативные теги <details> и <summary>
+         ===================================================================== -->
+        <section class="section" id="pricing" aria-labelledby="pricing-title">
+            <div class="container">
+                <header class="section-header">
+                    <h2 id="pricing-title" class="section-title">Занятия</h2>
+                    <p class="section-desc">При покупке любого абонемента на срок от двух месяцев и более дарим одну
+                        персональную тренировку в подарок. Запишитесь прямо сейчас, чтобы зафиксировать бонус за вашим
+                        номером</p>
+                </header>
+
+                <div class="pricing-grid">
+                    <label class="plan-card">
+                        <input type="radio" name="plan" value="start" class="plan-card__radio">
+                        <h3 class="plan-card__name">Дневной</h3>
+                        <p class="plan-card__price">90 BYN / мес</p>
+                        <ul class="plan-card__features">
+                            <li>Посещение с 7:00 до 17:00</li>
+                            <li>Тренажёрный зал</li>
+                            <li>Кардио-зона</li>
+                            <li>Вводный инструктаж</li>
+                        </ul>
+                        <span class="btn btn--outline plan-card__action">Записаться</span>
+                    </label>
+
+                    <label class="plan-card">
+                        <input type="radio" name="plan" value="pro" class="plan-card__radio" checked>
+                        <h3 class="plan-card__name">Безлимит</h3>
+                        <p class="plan-card__price">130 BYN / мес</p>
+                        <ul class="plan-card__features">
+                            <li>Круглосуточный доступ 24/7</li>
+                            <li>Все зоны клуба</li>
+                            <li>Групповые тренировки по расписанию</li>
+                            <li>Сауна</li>
+                        </ul>
+                        <span class="btn btn--primary plan-card__action">Записаться</span>
+                    </label>
+
+                    <label class="plan-card">
+                        <input type="radio" name="plan" value="studio" class="plan-card__radio">
+                        <h3 class="plan-card__name">С тренером</h3>
+                        <p class="plan-card__price">280 BYN / мес</p>
+                        <ul class="plan-card__features">
+                            <li>Индивидуальный график</li>
+                            <li>Безлимит в зал, 12 персональных тренировок в месяц</li>
+                            <li>Индивидуальный план питания</li>
+                            <li>Регулярные замеры прогресса</li>
+                            <li>Доступ в сауну и сопровождение куратора в чате</li>
+                        </ul>
+                        <span class="btn btn--outline plan-card__action">Записаться</span>
+                    </label>
+                </div>
+
+                <!-- Нативный аккордеон вопросов без JS (Уровень PRO: <details> + <summary>) -->
+                <div class="faq-list">
+                    <details class="faq-item">
+                        <summary class="faq-item__question">18:00 — Кроссфит (Зал №1)</summary>
+                        <p class="faq-item__answer">
+                            Интенсивная функциональная тренировка для любого уровня подготовки. С собой иметь сменную
+                            обувь и воду.
+                        </p>
+                    </details>
+                    <details class="faq-item">
+                        <summary class="faq-item__question">19:30 — Бокс (Ринг)</summary>
+                        <p class="faq-item__answer">
+                            Постановка удара и работа на снарядах.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+         АСИММЕТРИЧНЫЙ СПЛИТ-БЛОК КОНТАКТОВ (Уровень BASE)
+         Две колонки: слева ширина var(--split-sidebar-width), справа 1fr.
+         На экранах < 768px перестраивается в 1 колонку.
+         ===================================================================== -->
+        <section class="section section--alt" id="contacts" aria-labelledby="contacts-title">
+            <div class="container">
+                <div class="contacts-split">
+                    <div class="contacts-split__info">
+                        <h2 id="contacts-title" class="section-title">Адрес и контакты</h2>
+                        <p class="contacts-split__address">
+                            г. Минск, пр-т Дзержинского, 104<br>
+                            <strong>ст. м. Петровщина</strong> (3 минуты пешком)
+                        </p>
+                        <dl class="contacts-meta">
+                            <div class="contacts-meta__row">
+                                <dt>Режим работы:</dt>
+                                <dd>Пн–Вс, 00:00 – 24:00</dd>
+                            </div>
+                            <div class="contacts-meta__row">
+                                <dt>Телефон:</dt>
+                                <dd><a href="tel:+375290000000">+375 (29) 000-00-00</a></dd>
+                            </div>
+                        </dl>
+                        <div class="contacts-split__links">
+                            <a href="#" class="btn btn--primary">Написать в Telegram</a>
+                        </div>
+                    </div>
+
+                    <div class="contacts-split__map">
+                        <img src="images/map.jpg"
+                            alt="Схема проезда: г. Минск, пр-т Дзержинского, 104, ст. м. Петровщина" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container site-footer__inner">
+            <p>&copy; 2026 GYMBY. Все права защищены.</p>
+            <a href="#hero-title" class="site-footer__top">Наверх &uarr;</a>
+        </div>
+    </footer>
+
+</body>
+
+</html>
